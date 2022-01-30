@@ -1,0 +1,17 @@
+// Define how to load a string from a properties file:
+def getStringFromFile(fileName, property) {
+    Properties props = new Properties()
+
+    props.load(project.rootProject.file(fileName).newDataInputStream())
+
+    return props[property].toString()
+}
+
+// Specify keys.properties file as the source
+def getStringFromKeysFile(property) {
+    return getStringFromFile('keys.properties', property).toString()
+}
+
+// Expose the keys defined in keys.properties as a variable available for the whole project
+ext.keys = ["public_key" : getStringFromKeysFile('public_key'),
+            "private_key" : getStringFromKeysFile('private_key')]
