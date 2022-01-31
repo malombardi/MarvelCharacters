@@ -13,11 +13,11 @@ class FakeLocalDataSource : LocalDataSource {
         return MAX_RESULTS
     }
 
-    override suspend fun searchSize(): Int {
+    override suspend fun searchSize(startWith: String): Int {
         return MAX_RESULTS
     }
 
-    override suspend fun comicsSize(): Int {
+    override suspend fun comicsSize(characterId: String): Int {
         return MAX_RESULTS
     }
 
@@ -29,7 +29,7 @@ class FakeLocalDataSource : LocalDataSource {
         // Do Nothing
     }
 
-    override suspend fun saveComics(comics: List<MarvelComic>) {
+    override suspend fun saveComics(characterId: String, comics: List<MarvelComic>) {
         // Do Nothing
     }
 

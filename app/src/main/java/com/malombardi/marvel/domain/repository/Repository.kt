@@ -32,7 +32,7 @@ class Repository(
         localDataSource.searchCharacters(startWith)
 
     suspend fun checkSearchRequireNewPage(startWith: String, lastVisible: Int) {
-        val size = localDataSource.searchSize()
+        val size = localDataSource.searchSize(startWith)
         if (lastVisible >= size - PAGE_THRESHOLD) {
             val offset = size / PAGE_SIZE + 1
             val newCharacters =
@@ -45,15 +45,11 @@ class Repository(
         localDataSource.getComics(characterId)
 
     suspend fun checkComicsRequireNewPage(characterId: String, lastVisible: Int) {
-        val size = localDataSource.comicsSize()
+        val size = localDataSource.comicsSize(characterId)
         if (lastVisible >= size - PAGE_THRESHOLD) {
             val offset = size / PAGE_SIZE + 1
             val newComics = withTimeout(5_000) { remoteDataSource.getComics(characterId, offset) }
-            localDataSource.saveComics(newComics)
+            localDataSource.saveComics(characterId, newComics)
         }
-    }
-
-    companion object {
-
     }
 }
