@@ -7,7 +7,7 @@ import com.malombardi.marvel.domain.repository.network.NetworkFactory
 import com.malombardi.marvel.domain.repository.network.WebService
 import javax.inject.Inject
 
-class RemoteDataSourceImpl (private val webService: WebService = WebService()) :
+class RemoteDataSourceImpl @Inject constructor(private val webService: WebService) :
     RemoteDataSource {
 
     override suspend fun getCharacters(offset: Int): List<MarvelCharacter> {
@@ -25,11 +25,4 @@ class RemoteDataSourceImpl (private val webService: WebService = WebService()) :
             .toDomainComicList()
     }
 
-    companion object {
-        private var instance: RemoteDataSourceImpl? = null
-
-        fun getInstance() = instance ?: synchronized(this) {
-            instance ?: RemoteDataSourceImpl().also { instance = it }
-        }
-    }
 }

@@ -1,6 +1,8 @@
 package com.malombardi.marvel.domain.repository.network
 
 import com.google.gson.GsonBuilder
+import com.malombardi.marvel.domain.Constants.BASE_URL
+import com.malombardi.marvel.domain.Constants.DATE_FORMAT
 import com.malombardi.marvel.domain.repository.network.responses.MarvelCharacterResponse
 import com.malombardi.marvel.domain.repository.network.responses.MarvelComicResponse
 import retrofit2.Retrofit
@@ -11,11 +13,11 @@ class WebService {
 
     init {
         val gson = GsonBuilder()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+            .setDateFormat(DATE_FORMAT)
             .create()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://gateway.marvel.com:443/v1/public/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
