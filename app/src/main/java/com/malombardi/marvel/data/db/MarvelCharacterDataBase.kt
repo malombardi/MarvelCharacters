@@ -8,6 +8,7 @@ import com.malombardi.marvel.data.db.entities.MarvelComicEntity
 import com.malombardi.marvel.data.db.entities.MarvelCreatorEntity
 import com.malombardi.marvel.data.db.relations.CharacterComicCrossRef
 import com.malombardi.marvel.data.db.relations.ComicCreatorCrossRef
+import javax.inject.Singleton
 
 @Database(
     entities = [MarvelCharacterEntity::class,
@@ -17,6 +18,11 @@ import com.malombardi.marvel.data.db.relations.ComicCreatorCrossRef
         ComicCreatorCrossRef::class
     ], version = 1
 )
+@Singleton
 abstract class MarvelCharacterDataBase : RoomDatabase() {
     abstract fun marvelDao(): MarvelDao
+
+    companion object{
+        const val DB_NAME = "marvel_db"
+    }
 }

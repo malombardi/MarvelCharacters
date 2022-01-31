@@ -8,11 +8,12 @@ import com.malombardi.marvel.domain.models.MarvelCharacter
 import com.malombardi.marvel.domain.models.MarvelComic
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withTimeout
+import javax.inject.Inject
 
 /**
  * The repository will get data from the DB if available and fetch from network.
  */
-class Repository(
+class Repository @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) {

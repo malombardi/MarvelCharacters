@@ -1,6 +1,6 @@
 package com.malombardi.marvel.data
 
-import com.malombardi.marvel.data.db.MarvelCharacterDataBase
+import com.malombardi.marvel.data.db.dao.MarvelDao
 import com.malombardi.marvel.data.db.relations.CharacterComicCrossRef
 import com.malombardi.marvel.data.db.relations.ComicCreatorCrossRef
 import com.malombardi.marvel.domain.datasources.LocalDataSource
@@ -11,9 +11,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class LocalDataSourceImpl @Inject constructor(db: MarvelCharacterDataBase) : LocalDataSource {
-
-    private val dao = db.marvelDao()
+class LocalDataSourceImpl @Inject constructor(private val dao: MarvelDao) : LocalDataSource {
 
     override suspend fun charactersSize(): Int {
         return dao.charactersCount()
@@ -62,9 +60,9 @@ class LocalDataSourceImpl @Inject constructor(db: MarvelCharacterDataBase) : Loc
 
     override fun getComics(characterId: String): Flow<List<MarvelComic>> {
         val comicsList = dao.getComicsForCharacter(characterId)[0].comics?.toDomainComicList()
-        return if (comicsList.isNullOrEmpty()){
+        return if (comicsList.isNullOrEmpty()) {
             flowOf(listOf())
-        }else {
+        } else {
             flowOf(comicsList)
         }
     }

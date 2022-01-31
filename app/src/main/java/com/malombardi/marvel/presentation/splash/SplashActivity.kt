@@ -17,8 +17,10 @@ import com.bumptech.glide.request.RequestListener
 import com.malombardi.marvel.R
 import com.malombardi.marvel.databinding.ActivitySplashBinding
 import com.malombardi.marvel.presentation.characters.CharactersActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
