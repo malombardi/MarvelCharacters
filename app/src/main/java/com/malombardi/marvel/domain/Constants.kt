@@ -8,4 +8,5 @@ object Constants {
     const val STARTING_OFFSET = 0
     const val PAGE_SIZE = 20
     const val PAGE_THRESHOLD = 10
+    const val UNKNOWN_ID = -1
 }

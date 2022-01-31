@@ -1,68 +1,55 @@
 package com.malombardi.marvel.domain.fake_datasources
 
 import com.malombardi.marvel.domain.datasources.LocalDataSource
-import com.malombardi.marvel.domain.models.MarvelCharacter
-import com.malombardi.marvel.domain.models.MarvelComic
+import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.MAX_RESULTS
+import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeCharacterData
+import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeComicData
+import com.malombardi.marvel.domain.models.*
 import kotlinx.coroutines.flow.flow
 
-open class FakeLocalDataSource : LocalDataSource {
+class FakeLocalDataSource : LocalDataSource {
     override suspend fun charactersSize(): Int {
-        return 5
+        return MAX_RESULTS
     }
 
     override suspend fun searchSize(): Int {
-        return 5
+        return MAX_RESULTS
     }
 
     override suspend fun comicsSize(): Int {
-        return 5
+        return MAX_RESULTS
     }
 
-    override suspend fun saveCharacters(characters: List<MarvelCharacter>) {
-        // Do nothing
+    override suspend fun saveCharacters(characters: MarvelCharacterResponse) {
+        // Do Nothing
     }
 
-    override suspend fun saveSearch(characters: List<MarvelCharacter>) {
-        // Do nothing
+    override suspend fun saveSearch(characters: MarvelCharacterResponse) {
+        // Do Nothing
     }
 
-    override suspend fun saveComics(comics: List<MarvelComic>) {
-        // Do nothing
+    override suspend fun saveComics(comics: MarvelComicResponse) {
+        // Do Nothing
     }
 
     override fun getCharacters() = flow {
+        val fakeData = getFakeCharacterData()
         emit(
-            listOf(
-                MarvelCharacter("1"),
-                MarvelCharacter("2"),
-                MarvelCharacter("3"),
-                MarvelCharacter("4"),
-                MarvelCharacter("5")
-            )
+            fakeData.results
         )
     }
 
     override fun searchCharacters(startWith: String) = flow {
+        val fakeData = getFakeCharacterData()
         emit(
-            listOf(
-                MarvelCharacter("1"),
-                MarvelCharacter("2"),
-                MarvelCharacter("3"),
-                MarvelCharacter("4"),
-                MarvelCharacter("5")
-            )
+            fakeData.results
         )
     }
 
     override fun getComics(characterId: String) = flow {
+        val fakeData = getFakeComicData()
         emit(
-            listOf(
-                MarvelComic("1"),
-                MarvelComic("2"),
-                MarvelComic("3"),
-                MarvelComic("4"),
-                MarvelComic("5")
-            )
+            fakeData.results
         )
     }
 }

@@ -2,7 +2,9 @@ package com.malombardi.marvel.domain.repository.network
 
 import com.google.gson.GsonBuilder
 import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.marvel.domain.models.MarvelCharacterResponse
 import com.malombardi.marvel.domain.models.MarvelComic
+import com.malombardi.marvel.domain.models.MarvelComicResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -22,19 +24,19 @@ class WebService {
         api = retrofit.create(Api::class.java)
     }
 
-    suspend fun getCharacters(options: Map<String,String>): List<MarvelCharacter> {
+    suspend fun getCharacters(options: Map<String,String>): MarvelCharacterResponse {
         return api.getCharacters(options)
     }
 
-    suspend fun getCharacterDetail(options: Map<String,String>, characterId: String): MarvelCharacter {
+    suspend fun getCharacterDetail(options: Map<String,String>, characterId: String): MarvelCharacterResponse {
         return api.getCharacterById(options, characterId)
     }
 
-    suspend fun searchCharacter(options: Map<String,String>, startWith: String): List<MarvelCharacter> {
+    suspend fun searchCharacter(options: Map<String,String>, startWith: String): MarvelCharacterResponse {
         return api.searchCharacters(options, startWith)
     }
 
-    suspend fun getComics(options: Map<String,String>, characterId: String): List<MarvelComic> {
+    suspend fun getComics(options: Map<String,String>, characterId: String): MarvelComicResponse {
         return api.getComicForCharacterId(options, characterId)
     }
 }
