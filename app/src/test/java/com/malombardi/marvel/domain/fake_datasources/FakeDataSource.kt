@@ -6,39 +6,32 @@ class FakeDataSource {
     companion object {
         const val MAX_RESULTS = 5
 
-        fun getFakeCharacterData() : CharacterData {
-            val fakeCharactersList = ArrayList<MarvelCharacter>()
+        fun getFakeMarvelCharacter(): List<MarvelCharacter> {
+            val fakeCharacterList = ArrayList<MarvelCharacter>()
 
             for(i in 0 until MAX_RESULTS) {
-                fakeCharactersList.add(getFakeMarvelCharacter(i))
+                fakeCharacterList.add(MarvelCharacter("",
+                    i,
+                    "",
+                    "",
+                    ""))
             }
-            return CharacterData(fakeCharactersList)
+
+            return fakeCharacterList
         }
 
-        private fun getFakeMarvelCharacter(id: Int): MarvelCharacter {
-            return MarvelCharacter("",
-                id,
-                "",
-                Thumbnail("",""),
-                listOf<Url>())
-        }
-
-        fun getFakeComicData() : ComicData {
+        fun getFakeMarvelComic(): List<MarvelComic> {
             val fakeComicList = ArrayList<MarvelComic>()
 
             for(i in 0 until MAX_RESULTS) {
-                fakeComicList.add(getFakeMarvelComic(i))
+                fakeComicList.add(MarvelComic(null,
+                    null,
+                    null,
+                    i,
+                    null,
+                    null))
             }
-            return ComicData(fakeComicList)
-        }
-
-        private fun getFakeMarvelComic(id: Int): MarvelComic {
-            return MarvelComic(null,
-                null,
-                null,
-                id,
-                null,
-                null)
+            return fakeComicList
         }
     }
 }

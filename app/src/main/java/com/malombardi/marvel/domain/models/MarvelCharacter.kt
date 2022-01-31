@@ -1,11 +1,11 @@
 package com.malombardi.marvel.domain.models
 
-import com.malombardi.marvel.domain.Constants.UNKNOWN_ID
+import com.malombardi.marvel.domain.Constants
 
 data class MarvelCharacter(
     val description: String? = "",
-    val id: Int? = UNKNOWN_ID,
+    val id: Int? = Constants.UNKNOWN_ID,
     val name: String? = "",
-    val thumbnail: Thumbnail? = null,
-    val urls: List<Url>? = null
+    val thumbnail: String? = null,
+    val url: String? = null
 )

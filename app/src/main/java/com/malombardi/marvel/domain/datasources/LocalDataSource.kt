@@ -1,9 +1,7 @@
 package com.malombardi.marvel.domain.datasources
 
 import com.malombardi.marvel.domain.models.MarvelCharacter
-import com.malombardi.marvel.domain.models.MarvelCharacterResponse
 import com.malombardi.marvel.domain.models.MarvelComic
-import com.malombardi.marvel.domain.models.MarvelComicResponse
 import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
@@ -13,11 +11,11 @@ interface LocalDataSource {
 
     suspend fun comicsSize(): Int
 
-    suspend fun saveCharacters(characters: MarvelCharacterResponse)
+    suspend fun saveCharacters(characters: List<MarvelCharacter>)
 
-    suspend fun saveSearch(characters: MarvelCharacterResponse)
+    suspend fun saveSearch(characters: List<MarvelCharacter>)
 
-    suspend fun saveComics(comics: MarvelComicResponse)
+    suspend fun saveComics(comics: List<MarvelComic>)
 
     fun getCharacters(): Flow<List<MarvelCharacter>>
 

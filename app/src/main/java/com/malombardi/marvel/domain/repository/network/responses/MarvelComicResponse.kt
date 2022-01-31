@@ -1,4 +1,4 @@
-package com.malombardi.marvel.domain.models
+package com.malombardi.marvel.domain.repository.network.responses
 
 data class MarvelComicResponse(
     val data: ComicData,

@@ -1,21 +1,21 @@
 package com.malombardi.marvel.domain.fake_datasources
 
 import com.malombardi.marvel.domain.datasources.RemoteDataSource
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeCharacterData
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeComicData
-import com.malombardi.marvel.domain.models.MarvelCharacterResponse
-import com.malombardi.marvel.domain.models.MarvelComicResponse
+import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelCharacter
+import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelComic
+import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.marvel.domain.models.MarvelComic
 
 class FakeRemoteDataSource : RemoteDataSource {
-    override suspend fun getCharacters(offset: Int): MarvelCharacterResponse {
-        return MarvelCharacterResponse(getFakeCharacterData())
+    override suspend fun getCharacters(offset: Int): List<MarvelCharacter> {
+        return getFakeMarvelCharacter()
     }
 
-    override suspend fun searchCharacters(startWith: String, offset: Int): MarvelCharacterResponse {
-        return MarvelCharacterResponse(getFakeCharacterData())
+    override suspend fun searchCharacters(startWith: String, offset: Int): List<MarvelCharacter> {
+        return getFakeMarvelCharacter()
     }
 
-    override suspend fun getComics(characterId: String, offset: Int): MarvelComicResponse {
-        return MarvelComicResponse(getFakeComicData())
+    override suspend fun getComics(characterId: String, offset: Int): List<MarvelComic> {
+        return getFakeMarvelComic()
     }
 }

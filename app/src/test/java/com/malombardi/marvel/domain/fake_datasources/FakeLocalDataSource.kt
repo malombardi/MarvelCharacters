@@ -2,9 +2,10 @@ package com.malombardi.marvel.domain.fake_datasources
 
 import com.malombardi.marvel.domain.datasources.LocalDataSource
 import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.MAX_RESULTS
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeCharacterData
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeComicData
-import com.malombardi.marvel.domain.models.*
+import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelCharacter
+import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelComic
+import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.marvel.domain.models.MarvelComic
 import kotlinx.coroutines.flow.flow
 
 class FakeLocalDataSource : LocalDataSource {
@@ -20,36 +21,33 @@ class FakeLocalDataSource : LocalDataSource {
         return MAX_RESULTS
     }
 
-    override suspend fun saveCharacters(characters: MarvelCharacterResponse) {
+    override suspend fun saveCharacters(characters: List<MarvelCharacter>) {
         // Do Nothing
     }
 
-    override suspend fun saveSearch(characters: MarvelCharacterResponse) {
+    override suspend fun saveSearch(characters: List<MarvelCharacter>) {
         // Do Nothing
     }
 
-    override suspend fun saveComics(comics: MarvelComicResponse) {
+    override suspend fun saveComics(comics: List<MarvelComic>) {
         // Do Nothing
     }
 
     override fun getCharacters() = flow {
-        val fakeData = getFakeCharacterData()
         emit(
-            fakeData.results
+            getFakeMarvelCharacter()
         )
     }
 
     override fun searchCharacters(startWith: String) = flow {
-        val fakeData = getFakeCharacterData()
         emit(
-            fakeData.results
+            getFakeMarvelCharacter()
         )
     }
 
     override fun getComics(characterId: String) = flow {
-        val fakeData = getFakeComicData()
         emit(
-            fakeData.results
+            getFakeMarvelComic()
         )
     }
 }
