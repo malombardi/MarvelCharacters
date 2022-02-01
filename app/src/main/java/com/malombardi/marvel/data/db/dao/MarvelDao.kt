@@ -28,7 +28,7 @@ interface MarvelDao {
     fun getCharactersWithName(startsWith: String): Flow<List<MarvelCharacterEntity>>
 
     @Query("SELECT * FROM marvelcharacterentity WHERE character_id = :characterId")
-    fun getComicsForCharacter(characterId: String): List<CharacterWithComics>
+    suspend fun getComicsForCharacter(characterId: String): List<CharacterWithComics>
 
     @Query("SELECT * FROM marvelcomicentity WHERE comic_id = :comicId")
     fun getCreatorsForComic(comicId: String): Flow<List<ComicWithCreators>>

@@ -13,16 +13,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.malombardi.marvel.data.Constants
-import com.malombardi.marvel.databinding.ActivityBioBinding
+import com.malombardi.marvel.databinding.DialogBioBinding
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CharacterBioDialog : DialogFragment() {
-    private lateinit var binding: ActivityBioBinding
+    private lateinit var binding: DialogBioBinding
     private lateinit var viewModel: CharactersBioViewModel
-    val sharedViewModel: CharactersViewModel by activityViewModels()
+    private val sharedViewModel: CharactersViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class CharacterBioDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ActivityBioBinding.inflate(inflater, container, false)
+        binding = DialogBioBinding.inflate(inflater, container, false)
         return binding.root
     }
 

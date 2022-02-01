@@ -32,17 +32,17 @@ class WebService {
         options: Map<String, String>,
         characterId: String
     ): MarvelCharacterResponse {
-        return api.getCharacterById(options, characterId)
+        return api.getCharacterById(characterId,options)
     }
 
     suspend fun searchCharacter(
         options: Map<String, String>,
         startWith: String
     ): MarvelCharacterResponse {
-        return api.searchCharacters(options, startWith)
+        return api.searchCharacters(startWith,options)
     }
 
     suspend fun getComics(options: Map<String, String>, characterId: String): MarvelComicResponse {
-        return api.getComicForCharacterId(options, characterId)
+        return api.getComicForCharacterId(characterId,options)
     }
 }

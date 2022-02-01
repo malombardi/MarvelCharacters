@@ -12,6 +12,7 @@ import com.malombardi.marvel.presentation.characters.bio.CharacterBioDialog
 import com.malombardi.marvel.presentation.characters.detail.CharacterDetailFragment
 import com.malombardi.marvel.presentation.characters.list.CharacterListFragment
 import com.malombardi.marvel.presentation.collectFlow
+import com.malombardi.marvel.presentation.comics.CharacterComicsDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -57,10 +58,7 @@ class CharactersActivity : AppCompatActivity() {
                     CharacterBioDialog.newInstance(state.link, supportFragmentManager).showsDialog
                 }
                 is CharactersActivityUiState.ComicsState -> {
-                    /*val intent = Intent(this@CharactersActivity, CharacterBioActivity::class.java).apply {
-                        putExtra(Constants.CHARACTER_ID, state.characterId)
-                    }
-                    resultLauncher.launch(intent)*/
+                    CharacterComicsDialog.newInstance(state.characterId.toString(), supportFragmentManager).showsDialog
                 }
             }
         }

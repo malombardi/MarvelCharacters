@@ -1,5 +1,6 @@
 package com.malombardi.marvel.domain.fake_datasources
 
+import com.malombardi.marvel.data.db.relations.CharacterWithComics
 import com.malombardi.marvel.domain.models.*
 
 class FakeDataSource {

@@ -13,19 +13,19 @@ interface Api {
 
     @GET("characters/{characterId}")
     suspend fun getCharacterById(
-        @QueryMap params: Map<String, String>,
-        @Path("characterId") characterId: String
+        @Path("characterId") characterId: String,
+        @QueryMap params: Map<String, String>
     ): MarvelCharacterResponse
 
     @GET("characters/{characterId}/comics")
     suspend fun getComicForCharacterId(
-        @QueryMap params: Map<String, String>,
-        @Path("characterId") characterId: String
+        @Path("characterId") characterId: String,
+        @QueryMap params: Map<String, String>
     ): MarvelComicResponse
 
     @GET("characters")
     suspend fun searchCharacters(
-        @QueryMap params: Map<String, String>,
-        @Path("nameStartsWith") nameStartsWith: String
+        @Path("nameStartsWith") nameStartsWith: String,
+        @QueryMap params: Map<String, String>
     ): MarvelCharacterResponse
 }

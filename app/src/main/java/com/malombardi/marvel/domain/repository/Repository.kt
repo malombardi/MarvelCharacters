@@ -36,7 +36,7 @@ class Repository @Inject constructor(
     suspend fun checkSearchRequireNewPage(startWith: String, lastVisible: Int) {
         val size = localDataSource.searchSize(startWith)
         if (lastVisible >= size - PAGE_THRESHOLD) {
-            val offset = size / PAGE_SIZE + 1
+            val offset = if(lastVisible == 0) 0 else {(size / PAGE_SIZE) * PAGE_SIZE}
             val newCharacters =
                 withTimeout(5_000) { remoteDataSource.searchCharacters(startWith, offset) }
             localDataSource.saveSearch(newCharacters)
@@ -49,7 +49,7 @@ class Repository @Inject constructor(
     suspend fun checkComicsRequireNewPage(characterId: String, lastVisible: Int) {
         val size = localDataSource.comicsSize(characterId)
         if (lastVisible >= size - PAGE_THRESHOLD) {
-            val offset = size / PAGE_SIZE + 1
+            val offset = if(lastVisible == 0) 0 else {(size / PAGE_SIZE) * PAGE_SIZE}
             val newComics = withTimeout(5_000) { remoteDataSource.getComics(characterId, offset) }
             localDataSource.saveComics(characterId, newComics)
         }

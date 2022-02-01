@@ -7,7 +7,7 @@ import com.malombardi.marvel.domain.datasources.LocalDataSource
 import com.malombardi.marvel.domain.models.MarvelCharacter
 import com.malombardi.marvel.domain.models.MarvelComic
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -58,12 +58,8 @@ class LocalDataSourceImpl @Inject constructor(private val dao: MarvelDao) : Loca
             localCharacter.map { it.toDomainCharacter() }
         }
 
-    override fun getComics(characterId: String): Flow<List<MarvelComic>> {
-        val comicsList = dao.getComicsForCharacter(characterId)[0].comics?.toDomainComicList()
-        return if (comicsList.isNullOrEmpty()) {
-            flowOf(listOf())
-        } else {
-            flowOf(comicsList)
-        }
+    override fun getComics(characterId: String): Flow<List<MarvelComic>> = flow {
+        val comicsList = dao.getComicsForCharacter(characterId)[0].comics!!.toDomainComicList()
+        emit(comicsList)
     }
 }

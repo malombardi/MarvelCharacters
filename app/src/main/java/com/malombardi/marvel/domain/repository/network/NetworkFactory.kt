@@ -20,7 +20,7 @@ class NetworkFactory {
         fun getNetworkOptions(offset: Int = STARTING_OFFSET): Map<String, String> {
             val ts = System.currentTimeMillis().toString()
             val options = mutableMapOf<String, String>()
-            options[ORDER_BY_KEY] = ORDER_BY_TYPE
+            //options[ORDER_BY_KEY] = ORDER_BY_TYPE
             options[TS_KEY] = ts
             options[LIMIT_KEY] = PAGE_SIZE.toString()
             options[API_KEY] = BuildConfig.public_key
