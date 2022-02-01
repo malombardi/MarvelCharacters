@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.malombardi.marvel.databinding.ViewholderCharacterBinding
 import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.marvel.presentation.collectFlow
+import com.malombardi.marvel.presentation.onClickEvents
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -25,9 +27,9 @@ class CharacterAdapter(
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) = with(holder) {
         val item = getItem(position)
         setData(item)
-        /*scope.collectFlow(itemView.onClickEvents) {
+        scope.collectFlow(itemView.onClickEvents) {
             viewModel.onItemSelected(item)
-        }*/
+        }
     }
 
     class CharacterDiffCallback : DiffUtil.ItemCallback<MarvelCharacter>() {

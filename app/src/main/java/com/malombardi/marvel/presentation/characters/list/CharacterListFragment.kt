@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.malombardi.marvel.databinding.FragmentCharacterListBinding
+import com.malombardi.marvel.presentation.characters.CharactersActivity
+import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,6 +24,7 @@ class CharacterListFragment : Fragment() {
     private lateinit var binding: FragmentCharacterListBinding
 
     val viewModel: CharacterListViewModel by viewModels()
+    val sharedViewModel: CharactersViewModel by activityViewModels()
 
     @ExperimentalCoroutinesApi
     private lateinit var adapter: CharacterAdapter
@@ -45,15 +50,18 @@ class CharacterListFragment : Fragment() {
 
             lifecycleScope.collectFlow(viewModel.uiState) { state ->
                 when(state){
-                    is UiState.LoadingState -> {
+                    is CharacterListUiState.LoadingState -> {
                         characterProgress.visibility = if (state.spinner) View.VISIBLE else View.GONE
                     }
-                    is UiState.SuccessState -> {
+                    is CharacterListUiState.SuccessState -> {
                         characterProgress.visibility = View.GONE
                         adapter.submitList(state.data)
                     }
-                    is UiState.ErrorState -> {
+                    is CharacterListUiState.ErrorState -> {
                         characterProgress.visibility = View.GONE
+                    }
+                    is CharacterListUiState.CharacterSelectedState -> {
+                        sharedViewModel.onCharacterSelected(state.character)
                     }
                 }
 

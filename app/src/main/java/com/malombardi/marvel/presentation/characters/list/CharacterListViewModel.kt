@@ -1,5 +1,6 @@
 package com.malombardi.marvel.presentation.characters.list
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.malombardi.marvel.domain.ResponseWrapper
 import com.malombardi.marvel.domain.models.MarvelCharacter
@@ -20,7 +21,7 @@ class CharacterListViewModel @Inject constructor(
 
     val lastItemVisible = MutableStateFlow(0)
 
-    val uiState = MutableStateFlow<UiState>(UiState.LoadingState(true))
+    val uiState = MutableStateFlow<CharacterListUiState>(CharacterListUiState.LoadingState(true))
 
     init {
         viewModelScope.launch {
@@ -35,7 +36,7 @@ class CharacterListViewModel @Inject constructor(
     }
 
     fun onItemSelected(marvelCharacter: MarvelCharacter) {
-
+        uiState.value = CharacterListUiState.CharacterSelectedState(marvelCharacter)
     }
 
     private fun getCharacters(lastVisible: Int) {
@@ -44,10 +45,10 @@ class CharacterListViewModel @Inject constructor(
                 .onEach { result ->
                     when (result) {
                         is ResponseWrapper.Error -> {
-                            uiState.value = UiState.ErrorState(result.error!!)
+                            uiState.value = CharacterListUiState.ErrorState(result.error!!)
                         }
                         is ResponseWrapper.Success -> {
-                            uiState.value = UiState.SuccessState(result.data!!)
+                            uiState.value = CharacterListUiState.SuccessState(result.data!!)
                         }
                     }
                 }
