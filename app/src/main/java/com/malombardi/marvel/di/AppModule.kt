@@ -13,6 +13,7 @@ import com.malombardi.marvel.domain.errors.ErrorHandler
 import com.malombardi.marvel.domain.errors.IErrorHandler
 import com.malombardi.marvel.domain.repository.Repository
 import com.malombardi.marvel.domain.repository.network.WebService
+import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,6 +72,13 @@ object AppModule {
     @Provides
     fun provideRepository(localDataSource: LocalDataSourceImpl, remoteDataSource: RemoteDataSourceImpl): Repository{
         return Repository(localDataSource, remoteDataSource)
+    }
+
+    @Provides
+    fun provideCharacterUseCase(repository: Repository,
+                                @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
+                                errorHandler: IErrorHandler): GetCharactersUseCase {
+        return GetCharactersUseCase(repository, coroutineDispatcher, errorHandler)
     }
 
     @DefaultDispatcher

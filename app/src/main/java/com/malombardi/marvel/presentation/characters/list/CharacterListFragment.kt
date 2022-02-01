@@ -43,12 +43,20 @@ class CharacterListFragment : Fragment() {
             characterList.setHasFixedSize(true)
             adapter = CharacterAdapter(viewModel, lifecycleScope)
 
-            lifecycleScope.collectFlow(viewModel.spinner) {
-                characterProgress.visibility = if (it) View.VISIBLE else View.GONE
-            }
+            lifecycleScope.collectFlow(viewModel.uiState) { state ->
+                when(state){
+                    is UiState.LoadingState -> {
+                        characterProgress.visibility = if (state.spinner) View.VISIBLE else View.GONE
+                    }
+                    is UiState.SuccessState -> {
+                        characterProgress.visibility = View.GONE
+                        adapter.submitList(state.data)
+                    }
+                    is UiState.ErrorState -> {
+                        characterProgress.visibility = View.GONE
+                    }
+                }
 
-            lifecycleScope.collectFlow(viewModel.character) {
-                adapter.submitList(it)
             }
 
             characterList.addOnScrollListener(object : RecyclerView.OnScrollListener() {

@@ -7,6 +7,7 @@ import com.malombardi.marvel.domain.repository.Repository
 import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -17,7 +18,13 @@ class GetCharactersUseCaseTest {
     private val remoteDataSource = FakeRemoteDataSource()
     private val errorHandler = ErrorHandler()
 
+    @ExperimentalCoroutinesApi
+    private val coroutineDispatcher = TestCoroutineDispatcher()
     private val repository = Repository(localDataSource, remoteDataSource)
+
+    @ExperimentalCoroutinesApi
+    private val getCharactersUseCase =
+        GetCharactersUseCase(repository, coroutineDispatcher, errorHandler)
 
     @ExperimentalCoroutinesApi
     @Test
