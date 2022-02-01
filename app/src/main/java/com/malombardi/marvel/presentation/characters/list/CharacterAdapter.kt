@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.malombardi.marvel.databinding.ViewholderCharacterBinding
 import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow
 import com.malombardi.marvel.presentation.onClickEvents
 import kotlinx.coroutines.CoroutineScope
@@ -13,7 +14,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 class CharacterAdapter(
-    private val viewModel: CharacterListViewModel,
+    private val viewModel: CharactersViewModel,
     private val scope: CoroutineScope
 ) :
     ListAdapter<MarvelCharacter, CharacterViewHolder>(CharacterDiffCallback()) {

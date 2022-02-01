@@ -19,6 +19,8 @@ class CharactersActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CharactersViewModel
 
+    private val listFragment = CharacterListFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[CharactersViewModel::class.java]
@@ -31,12 +33,16 @@ class CharactersActivity : AppCompatActivity() {
         lifecycleScope.collectFlow(viewModel.uiState) { state ->
             when (state) {
                 is CharactersActivityUiState.ListState -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, CharacterListFragment()).commit()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, listFragment)
+                        .commit()
                 }
                 is CharactersActivityUiState.DetailState -> {
-                    supportFragmentManager.beginTransaction()
+                    supportFragmentManager
+                        .beginTransaction()
                         .replace(R.id.fragmentContainer, CharacterDetailFragment(state.character))
+                        .addToBackStack(CharacterDetailFragment.NAME)
                         .commit()
                 }
             }

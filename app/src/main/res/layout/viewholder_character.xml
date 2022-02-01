@@ -20,8 +20,9 @@
         tools:text ="Iron Man"
         android:gravity="bottom|center_horizontal"
         android:layout_width="@dimen/default_image_size"
+        android:textColor="@color/white"
         android:layout_height="@dimen/default_image_text_height"
-        android:background="@color/gray_70"
+        android:background="@color/black_70"
         app:layout_constraintBottom_toBottomOf="@+id/character_image"
         app:layout_constraintStart_toStartOf="parent" />
 

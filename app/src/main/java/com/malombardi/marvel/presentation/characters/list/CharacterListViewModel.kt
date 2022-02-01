@@ -35,10 +35,6 @@ class CharacterListViewModel @Inject constructor(
         getCharacters(lastVisible)
     }
 
-    fun onItemSelected(marvelCharacter: MarvelCharacter) {
-        uiState.value = CharacterListUiState.CharacterSelectedState(marvelCharacter)
-    }
-
     private fun getCharacters(lastVisible: Int) {
         subscribeFlow(
             getCharactersUseCase.invoke(lastVisible)

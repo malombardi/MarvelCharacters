@@ -46,7 +46,7 @@ class CharacterListFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 3)
             characterList.layoutManager = layoutManager
             characterList.setHasFixedSize(true)
-            adapter = CharacterAdapter(viewModel, lifecycleScope)
+            adapter = CharacterAdapter(sharedViewModel, lifecycleScope)
 
             lifecycleScope.collectFlow(viewModel.uiState) { state ->
                 when(state){
@@ -60,11 +60,7 @@ class CharacterListFragment : Fragment() {
                     is CharacterListUiState.ErrorState -> {
                         characterProgress.visibility = View.GONE
                     }
-                    is CharacterListUiState.CharacterSelectedState -> {
-                        sharedViewModel.onCharacterSelected(state.character)
-                    }
                 }
-
             }
 
             characterList.addOnScrollListener(object : RecyclerView.OnScrollListener() {

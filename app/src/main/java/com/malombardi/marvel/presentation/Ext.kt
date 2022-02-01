@@ -16,7 +16,7 @@ fun <T> CoroutineScope.collectFlow(flow: Flow<T>, body: suspend (T) -> Unit) {
 @ExperimentalCoroutinesApi
 val View.onClickEvents: Flow<View>
     get() = callbackFlow {
-        val onClickListener = View.OnClickListener { offer(it) }
+        val onClickListener = View.OnClickListener { trySend(it) }
         setOnClickListener(onClickListener)
         awaitClose { setOnClickListener(null) }
     }.conflate()

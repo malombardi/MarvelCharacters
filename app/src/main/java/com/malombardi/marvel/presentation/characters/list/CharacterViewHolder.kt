@@ -20,7 +20,7 @@ class CharacterViewHolder(
                 .load(item.thumbnail)
                 .centerCrop()
                 .into(characterImage)
-                .onLoadFailed(context.getDrawable(R.drawable.ic_logo))
+                .onLoadFailed(context.getDrawable(R.drawable.not_available))
 
             characterName.text = item.name
         }
