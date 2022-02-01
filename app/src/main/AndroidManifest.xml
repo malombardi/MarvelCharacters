@@ -26,6 +26,9 @@
 
         <activity android:name=".presentation.characters.CharactersActivity" />
 
+        <activity android:name=".presentation.characters.bio.CharacterBioActivity"
+            android:theme="@style/Theme.MarvelCharacters.Bio" />
+
     </application>
 
 </manifest>

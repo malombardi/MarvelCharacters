@@ -15,7 +15,7 @@ class ErrorHandler : IErrorHandler {
             else -> {
                 ErrorEntity.InternalError(
                     THROWABLE_ERROR_CODE,
-                    throwable.message ?: ""
+                    throwable.message
                 )
             }
         }
@@ -23,7 +23,7 @@ class ErrorHandler : IErrorHandler {
 
     private fun getDomainError(throwable: HttpException): ErrorEntity {
         val errorResponse = convertErrorBody(throwable)
-        return ErrorEntity.InternalError(null, errorResponse ?: "")
+        return ErrorEntity.InternalError(HTTP_ERROR_CODE, errorResponse)
     }
 
     private fun convertErrorBody(throwable: HttpException): String? {
@@ -44,5 +44,6 @@ class ErrorHandler : IErrorHandler {
         const val EMPTY_DATA_ERROR_CODE = 1
         const val THROWABLE_ERROR_CODE = 2
         const val UNKNOWN_ERROR_CODE = 3
+        const val HTTP_ERROR_CODE = 4
     }
 }

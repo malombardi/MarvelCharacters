@@ -5,7 +5,7 @@ package com.malombardi.marvel.domain.errors
  */
 sealed class ErrorEntity {
 
-    data class InternalError(val code: Int? = null, val message: String) : ErrorEntity()
+    data class InternalError(val code: Int? = null, val message: String? = null) : ErrorEntity()
 
     object NetworkError : ErrorEntity()
 }

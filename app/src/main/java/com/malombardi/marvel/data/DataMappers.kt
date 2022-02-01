@@ -20,12 +20,14 @@ fun RemoteCharacter.toDomainCharacterList(): List<MarvelCharacter> {
             ""
         }
         val url = if (!it.urls.isNullOrEmpty()) {
+            var tempUrl = ""
             for (url in it.urls) {
                 if (url.type == URL_BIO_TYPE) {
-                    url.url
+                    tempUrl = url.url!!
+                    break
                 }
             }
-            ""
+            tempUrl
         } else {
             ""
         }

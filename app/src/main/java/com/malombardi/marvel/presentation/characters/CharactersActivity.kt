@@ -1,12 +1,14 @@
 package com.malombardi.marvel.presentation.characters
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.malombardi.marvel.R
 import com.malombardi.marvel.databinding.ActivityCharactersBinding
-import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.marvel.presentation.characters.bio.CharacterBioDialog
 import com.malombardi.marvel.presentation.characters.detail.CharacterDetailFragment
 import com.malombardi.marvel.presentation.characters.list.CharacterListFragment
 import com.malombardi.marvel.presentation.collectFlow
@@ -45,9 +47,32 @@ class CharactersActivity : AppCompatActivity() {
                         .addToBackStack(CharacterDetailFragment.NAME)
                         .commit()
                 }
+                is CharactersActivityUiState.ErrorState -> {
+                    val defaultErrorString = resources.getString(R.string.default_internal_error)
+                    Toast
+                        .makeText(this, defaultErrorString, Toast.LENGTH_LONG)
+                        .show()
+                }
+                is CharactersActivityUiState.BioState -> {
+                    CharacterBioDialog.newInstance(state.link, supportFragmentManager).showsDialog
+                }
+                is CharactersActivityUiState.ComicsState -> {
+                    /*val intent = Intent(this@CharactersActivity, CharacterBioActivity::class.java).apply {
+                        putExtra(Constants.CHARACTER_ID, state.characterId)
+                    }
+                    resultLauncher.launch(intent)*/
+                }
             }
         }
-
     }
 
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+        if (count == 0) {
+            super.onBackPressed()
+        } else {
+            supportFragmentManager.popBackStack()
+            viewModel.onDetailReturn()
+        }
+    }
 }

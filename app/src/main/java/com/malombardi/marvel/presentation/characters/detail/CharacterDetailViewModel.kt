@@ -16,5 +16,4 @@ class CharacterDetailViewModel @Inject constructor(private val getComicsUseCase:
     fun setSelectedCharacter(marvelCharacter: MarvelCharacter) {
         character = MutableStateFlow(marvelCharacter)
     }
-
 }

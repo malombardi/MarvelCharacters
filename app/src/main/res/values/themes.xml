@@ -22,6 +22,11 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="Theme.MarvelCharacters.Bio" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
     <style name="MarvelButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorAccent">@color/red_800</item>
         <item name="colorButtonNormal">@color/red_800</item>
