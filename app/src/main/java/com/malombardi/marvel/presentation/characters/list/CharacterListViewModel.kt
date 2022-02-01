@@ -1,5 +1,6 @@
 package com.malombardi.marvel.presentation.characters.list
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.malombardi.marvel.domain.ResponseWrapper
@@ -39,6 +40,14 @@ class CharacterListViewModel @Inject constructor(private val repository: Reposit
     }
 
     fun processError(error: ErrorEntity?){
+        if (error == null)
+        Log.d("ASDASDasdaSDASDASD", "ASDDEEDEDEDDDDDDDDD@!#!@#!@#!@#")
+        error?.let { errorEntity ->
+            when(errorEntity){
+                is ErrorEntity.InternalError -> Log.d("ASDASDASD", errorEntity.message)
+                is ErrorEntity.NetworkError -> Log.d("sdfasdfasdfasdf", "asdfsadfasdf")
+            }
+        }
 
     }
 

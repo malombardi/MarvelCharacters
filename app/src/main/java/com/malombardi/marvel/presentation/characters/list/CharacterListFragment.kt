@@ -1,7 +1,6 @@
 package com.malombardi.marvel.presentation.characters.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.malombardi.marvel.databinding.FragmentCharacterListBinding
 import com.malombardi.marvel.presentation.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {

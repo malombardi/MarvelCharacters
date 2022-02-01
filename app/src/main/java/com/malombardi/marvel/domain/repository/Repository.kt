@@ -19,7 +19,7 @@ class Repository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) {
 
-    fun getCharacters(): Flow<List<MarvelCharacter>> = localDataSource.getCharacters()
+    fun getCharacters(): Flow<List<MarvelCharacter>> =localDataSource.getCharacters()
 
     suspend fun checkCharactersRequireNewPage(lastVisible: Int) {
         val size = localDataSource.charactersSize()
