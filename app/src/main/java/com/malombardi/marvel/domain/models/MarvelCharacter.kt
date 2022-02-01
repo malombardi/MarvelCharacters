@@ -7,5 +7,6 @@ data class MarvelCharacter(
     val id: Int? = Constants.UNKNOWN_ID,
     val name: String? = "",
     val thumbnail: String? = null,
-    val url: String? = null
+    val url: String? = null,
+    val comicsCount: Int? = Constants.COMICS_EMPTY
 )

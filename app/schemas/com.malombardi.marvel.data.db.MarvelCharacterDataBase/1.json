@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c01fa44c56060cea5c302748601bd267",
+    "identityHash": "2f8dd34b6e206bd9e224dbdb1ad6a906",
     "entities": [
       {
         "tableName": "MarvelCharacterEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_id` INTEGER, `name` TEXT, `description` TEXT, `thumbnail` TEXT, `bio_link` TEXT, PRIMARY KEY(`character_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`character_id` INTEGER, `name` TEXT, `description` TEXT, `thumbnail` TEXT, `bio_link` TEXT, `comics_count` INTEGER, PRIMARY KEY(`character_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -36,6 +36,12 @@
             "fieldPath": "bioLink",
             "columnName": "bio_link",
             "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "comicsCount",
+            "columnName": "comics_count",
+            "affinity": "INTEGER",
             "notNull": false
           }
         ],
@@ -188,7 +194,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c01fa44c56060cea5c302748601bd267')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2f8dd34b6e206bd9e224dbdb1ad6a906')"
     ]
   }
 }

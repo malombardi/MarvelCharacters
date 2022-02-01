@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException
 class NetworkFactory {
     companion object {
         private const val ORDER_BY_KEY = "orderBy"
-        private const val ORDER_BY_TYPE = "modified"
+        private const val ORDER_BY_TYPE = "name"
         private const val TS_KEY = "ts"
         private const val API_KEY = "apikey"
         private const val HASH_KEY = "hash"

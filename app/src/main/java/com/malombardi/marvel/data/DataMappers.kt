@@ -2,6 +2,7 @@ package com.malombardi.marvel.data
 
 import com.malombardi.marvel.data.Constants.IMAGE_DEFAULT_SIZE
 import com.malombardi.marvel.data.Constants.URL_BIO_TYPE
+import com.malombardi.marvel.domain.Constants
 import com.malombardi.marvel.domain.models.Creator
 import com.malombardi.marvel.domain.models.MarvelCharacter
 import com.malombardi.marvel.domain.models.MarvelComic
@@ -33,7 +34,8 @@ fun RemoteCharacter.toDomainCharacterList(): List<MarvelCharacter> {
             id = it.id,
             name = it.name,
             thumbnail = img,
-            url = url
+            url = url,
+            comicsCount = it.comics?.available ?: Constants.COMICS_EMPTY
         )
     }
 }
@@ -77,7 +79,8 @@ fun LocalCharacter.toDomainCharacter(): MarvelCharacter {
         id = this.id,
         name = this.name,
         thumbnail = this.thumbnail,
-        url = this.bioLink
+        url = this.bioLink,
+        comicsCount = this.comicsCount
     )
 }
 
@@ -129,7 +132,8 @@ fun MarvelCharacter.toLocalCharacter(): LocalCharacter {
         name = this.name,
         description = this.description,
         thumbnail = this.thumbnail,
-        bioLink = this.url
+        bioLink = this.url,
+        comicsCount = this.comicsCount
     )
 }
 
@@ -140,7 +144,8 @@ fun List<MarvelCharacter>.toLocalCharacterList(): List<LocalCharacter> {
             name = it.name,
             description = it.description,
             thumbnail = it.thumbnail,
-            bioLink = it.url
+            bioLink = it.url,
+            comicsCount = it.comicsCount
         )
     }
 }

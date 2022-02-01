@@ -21,10 +21,10 @@ interface MarvelDao {
     @Query("SELECT COUNT(character_id) FROM marvelcharacterentity WHERE character_id = :characterId")
     suspend fun comicsCount(characterId: String): Int
 
-    @Query("SELECT * FROM marvelcharacterentity")
+    @Query("SELECT * FROM marvelcharacterentity ORDER BY name ASC")
     fun getCharacters(): Flow<List<MarvelCharacterEntity>>
 
-    @Query("SELECT * FROM marvelcharacterentity WHERE character_id LIKE '%' || :startsWith")
+    @Query("SELECT * FROM marvelcharacterentity WHERE character_id LIKE '%' || :startsWith ORDER BY name ASC")
     fun getCharactersWithName(startsWith: String): Flow<List<MarvelCharacterEntity>>
 
     @Query("SELECT * FROM marvelcharacterentity WHERE character_id = :characterId")

@@ -11,4 +11,5 @@ object Constants {
     const val PAGE_SIZE = 20
     const val PAGE_THRESHOLD = 10
     const val UNKNOWN_ID = -1
+    const val COMICS_EMPTY = 0
 }

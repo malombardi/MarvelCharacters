@@ -2,6 +2,7 @@ package com.malombardi.marvel.domain.usecases
 
 import com.malombardi.marvel.domain.ResponseWrapper
 import com.malombardi.marvel.domain.errors.ErrorHandler
+import com.malombardi.marvel.domain.errors.IErrorHandler
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.flowOn
 
 abstract class FlowUseCase<in P, out R>(
     private val coroutineDispatcher: CoroutineDispatcher,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: IErrorHandler
 ) {
 
     operator fun invoke(parameters: P): Flow<ResponseWrapper<R>> {

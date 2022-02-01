@@ -13,5 +13,6 @@ data class MarvelCharacterEntity (
     val name: String? = "",
     val description: String? = "",
     val thumbnail: String? = "",
-    @ColumnInfo(name = "bio_link")val bioLink: String? = ""
+    @ColumnInfo(name = "bio_link")val bioLink: String? = "",
+    @ColumnInfo(name = "comics_count")val comicsCount: Int? = Constants.COMICS_EMPTY
 )

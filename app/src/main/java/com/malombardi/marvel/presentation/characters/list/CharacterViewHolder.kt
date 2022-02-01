@@ -18,9 +18,10 @@ class CharacterViewHolder(
             Glide
                 .with(context)
                 .load(item.thumbnail)
-                .centerCrop()
+                .error(R.drawable.not_available)
+                .placeholder(R.drawable.not_available)
                 .into(characterImage)
-                .onLoadFailed(context.getDrawable(R.drawable.not_available))
+
 
             characterName.text = item.name
         }

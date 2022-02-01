@@ -9,7 +9,7 @@
         android:id="@+id/character_image"
         android:layout_width="@dimen/default_image_size"
         android:layout_height="@dimen/default_image_size"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
     </ImageView>
