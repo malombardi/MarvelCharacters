@@ -34,7 +34,7 @@ class CharacterListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCharacterListBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -14,6 +14,7 @@ import com.malombardi.marvel.domain.errors.IErrorHandler
 import com.malombardi.marvel.domain.repository.Repository
 import com.malombardi.marvel.domain.repository.network.WebService
 import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
+import com.malombardi.marvel.domain.usecases.GetComicsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -79,6 +80,13 @@ object AppModule {
                                 @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
                                 errorHandler: IErrorHandler): GetCharactersUseCase {
         return GetCharactersUseCase(repository, coroutineDispatcher, errorHandler)
+    }
+
+    @Provides
+    fun provideComicsUseCase(repository: Repository,
+                                @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
+                                errorHandler: IErrorHandler): GetComicsUseCase {
+        return GetComicsUseCase(repository, coroutineDispatcher, errorHandler)
     }
 
     @DefaultDispatcher

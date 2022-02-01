@@ -13,6 +13,8 @@
     <dimen name="default_image_size">120dp</dimen>
     <dimen name="default_image_text_height">50dp</dimen>
 
+    <dimen name="detail_image_size">200dp</dimen>
+
     <dimen name="text_size_m">16sp</dimen>
     <dimen name="text_size_l">18sp</dimen>
     <dimen name="text_size_xl">20sp</dimen>
