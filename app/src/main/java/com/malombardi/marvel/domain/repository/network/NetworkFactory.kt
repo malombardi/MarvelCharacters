@@ -13,7 +13,7 @@ class NetworkFactory {
         private const val ORDER_BY_KEY = "orderBy"
         private const val ORDER_BY_TYPE = "modified"
         private const val TS_KEY = "ts"
-        private const val API_KEY = "api_key"
+        private const val API_KEY = "apikey"
         private const val HASH_KEY = "hash"
         private const val HASH_ALGO_TYPE = "MD5"
 

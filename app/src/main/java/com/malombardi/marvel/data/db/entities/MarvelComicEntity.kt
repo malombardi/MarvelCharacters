@@ -3,6 +3,8 @@ package com.malombardi.marvel.data.db.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.malombardi.marvel.data.db.Converter
 import com.malombardi.marvel.domain.Constants
 import com.malombardi.marvel.domain.models.Creator
 
@@ -13,6 +15,7 @@ data class MarvelComicEntity(
     val digitalId: Int? = Constants.UNKNOWN_ID,
     val description: String? = "",
     val thumbnail: String? = "",
+    @TypeConverters(Converter::class)
     val creators: List<MarvelCreatorEntity>? = null,
     val title: String? = ""
 )

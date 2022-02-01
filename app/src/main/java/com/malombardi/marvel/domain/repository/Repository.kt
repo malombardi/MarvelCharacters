@@ -2,6 +2,7 @@ package com.malombardi.marvel.domain.repository
 
 import com.malombardi.marvel.domain.Constants.PAGE_SIZE
 import com.malombardi.marvel.domain.Constants.PAGE_THRESHOLD
+import com.malombardi.marvel.domain.ResponseWrapper
 import com.malombardi.marvel.domain.datasources.LocalDataSource
 import com.malombardi.marvel.domain.datasources.RemoteDataSource
 import com.malombardi.marvel.domain.models.MarvelCharacter
@@ -23,7 +24,7 @@ class Repository @Inject constructor(
     suspend fun checkCharactersRequireNewPage(lastVisible: Int) {
         val size = localDataSource.charactersSize()
         if (lastVisible >= size - PAGE_THRESHOLD) {
-            val offset = size / PAGE_SIZE + 1
+            val offset = if(lastVisible == 0) 0 else {(size / PAGE_SIZE) * PAGE_SIZE}
             val newCharacters = withTimeout(5_000) { remoteDataSource.getCharacters(offset) }
             localDataSource.saveCharacters(newCharacters)
         }

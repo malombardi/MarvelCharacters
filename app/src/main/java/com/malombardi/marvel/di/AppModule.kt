@@ -9,12 +9,18 @@ import com.malombardi.marvel.data.db.MarvelCharacterDataBase
 import com.malombardi.marvel.data.db.dao.MarvelDao
 import com.malombardi.marvel.domain.datasources.LocalDataSource
 import com.malombardi.marvel.domain.datasources.RemoteDataSource
+import com.malombardi.marvel.domain.errors.ErrorHandler
+import com.malombardi.marvel.domain.errors.IErrorHandler
+import com.malombardi.marvel.domain.repository.Repository
 import com.malombardi.marvel.domain.repository.network.WebService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -54,4 +60,40 @@ object AppModule {
     fun provideLocalDataSource(dao: MarvelDao): LocalDataSource {
         return LocalDataSourceImpl(dao)
     }
+
+    @Singleton
+    @Provides
+    fun provideErrorHandler(): IErrorHandler {
+        return ErrorHandler()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepository(localDataSource: LocalDataSourceImpl, remoteDataSource: RemoteDataSourceImpl): Repository{
+        return Repository(localDataSource, remoteDataSource)
+    }
+
+    @DefaultDispatcher
+    @Provides
+    fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
+
+    @IoDispatcher
+    @Provides
+    fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @MainDispatcher
+    @Provides
+    fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class IoDispatcher
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class MainDispatcher
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class DefaultDispatcher

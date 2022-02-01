@@ -14,7 +14,7 @@ class ErrorHandler : IErrorHandler {
             }
             else -> {
                 ErrorEntity.InternalError(
-                    null,
+                    THROWABLE_ERROR_CODE,
                     throwable.message ?: ""
                 )
             }
@@ -38,5 +38,11 @@ class ErrorHandler : IErrorHandler {
         } catch (exception: Exception) {
             null
         }
+    }
+
+    companion object {
+        const val EMPTY_DATA_ERROR_CODE = 1
+        const val THROWABLE_ERROR_CODE = 2
+        const val UNKNOWN_ERROR_CODE = 3
     }
 }

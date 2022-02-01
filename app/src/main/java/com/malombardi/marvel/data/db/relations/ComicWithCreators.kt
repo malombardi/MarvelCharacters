@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 import com.malombardi.marvel.data.db.entities.MarvelComicEntity
+import com.malombardi.marvel.data.db.entities.MarvelCreatorEntity
 import com.malombardi.marvel.domain.models.Creator
 
 data class ComicWithCreators(
@@ -17,5 +18,5 @@ data class ComicWithCreators(
             entityColumn = "creator_id"
         )
     )
-    val creators: List<Creator>
+    val creators: List<MarvelCreatorEntity>
 )

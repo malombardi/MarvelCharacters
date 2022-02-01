@@ -1,4 +1,7 @@
 package com.malombardi.marvel.presentation.characters
 
-class CharactersViewModel {
+import androidx.lifecycle.ViewModel
+
+class CharactersViewModel : ViewModel() {
+
 }

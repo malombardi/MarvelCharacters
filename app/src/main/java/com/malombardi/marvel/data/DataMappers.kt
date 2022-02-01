@@ -14,7 +14,7 @@ import com.malombardi.marvel.domain.repository.network.responses.MarvelComicResp
 fun RemoteCharacter.toDomainCharacterList(): List<MarvelCharacter> {
     return data.results.map {
         val img = if (it.thumbnail != null) {
-            it.thumbnail.path + "/" + IMAGE_DEFAULT_SIZE + it.thumbnail.extension
+            it.thumbnail.path + "/" + IMAGE_DEFAULT_SIZE + "." + it.thumbnail.extension
         } else {
             ""
         }
@@ -41,7 +41,7 @@ fun RemoteCharacter.toDomainCharacterList(): List<MarvelCharacter> {
 fun RemoteComic.toDomainComicList(): List<MarvelComic> {
     return data.results.map {
         val img = if (it.thumbnail != null) {
-            it.thumbnail.path + "/" + IMAGE_DEFAULT_SIZE + it.thumbnail.extension
+            it.thumbnail.path + "/" + IMAGE_DEFAULT_SIZE + "." + it.thumbnail.extension
         } else {
             ""
         }
@@ -117,7 +117,7 @@ fun LocalCreator.toDomainCreator(): Creator {
 
 fun Creator.toLocalCreator(): LocalCreator {
     return LocalCreator(
-        resourceURI = this.resourceURI,
+        resourceURI = this.resourceURI!!,
         name = this.name,
         role = this.role
     )
