@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.malombardi.marvel.R
 import com.malombardi.marvel.data.Constants
 import com.malombardi.marvel.databinding.DialogComicsBinding
 import com.malombardi.marvel.domain.usecases.GetComicsUseCase
@@ -37,6 +38,7 @@ class CharacterComicsDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.FullScreenDialog);
         viewModel.startFetching(arguments?.getString(Constants.CHARACTER_ID))
     }
 
