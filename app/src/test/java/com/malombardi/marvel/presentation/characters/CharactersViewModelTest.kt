@@ -7,7 +7,6 @@ import com.malombardi.marvel.domain.models.MarvelCharacter
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.mockito.MockitoAnnotations
 
 class CharactersViewModelTest {
 
@@ -15,7 +14,6 @@ class CharactersViewModelTest {
 
     @Before
     fun setup() {
-        MockitoAnnotations.initMocks(this)
         charactersViewModel = CharactersViewModel()
     }
 
