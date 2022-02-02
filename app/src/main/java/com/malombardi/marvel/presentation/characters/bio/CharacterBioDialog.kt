@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.malombardi.marvel.R
 import com.malombardi.marvel.data.Constants
 import com.malombardi.marvel.databinding.DialogBioBinding
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
@@ -26,6 +27,7 @@ class CharacterBioDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
         viewModel = ViewModelProvider(this)[CharactersBioViewModel::class.java]
         viewModel.setUrl(arguments?.getString(Constants.URL_BIO_TYPE))
     }

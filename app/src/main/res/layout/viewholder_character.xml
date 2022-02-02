@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:padding="@dimen/small_margin"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -21,7 +22,9 @@
         android:gravity="bottom|center_horizontal"
         android:layout_width="@dimen/default_image_size"
         android:textColor="@color/white"
+        android:ellipsize="end"
         android:layout_height="@dimen/default_image_text_height"
+        android:maxLines="2"
         android:background="@color/black_70"
         app:layout_constraintBottom_toBottomOf="@+id/character_image"
         app:layout_constraintStart_toStartOf="parent" />

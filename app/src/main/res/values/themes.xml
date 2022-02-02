@@ -32,11 +32,8 @@
     </style>
 
     <style name="FullScreenDialog" parent="Theme.MaterialComponents.Light.Dialog">
-        <item name="colorPrimaryDark">@color/red_800</item>
-        <item name="colorAccent">@color/red_800</item>
-        <item name="colorPrimary">@color/red_800</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
-        <item name="android:windowBackground">@android:color/white</item>
-        <item name="actionMenuTextColor">@color/white</item>
     </style>
 </resources>

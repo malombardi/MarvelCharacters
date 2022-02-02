@@ -43,6 +43,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/character_detail_pic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
     <TextView
         android:id="@+id/character_detail_description"
         android:layout_width="match_parent"
@@ -50,11 +56,9 @@
         android:layout_margin="@dimen/default_margin"
         android:textSize="@dimen/text_size_l"
         android:textColor="@color/black"
-        android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@+id/character_detail_pic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:textStyle="italic"/>
 
+    </ScrollView>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/character_detail_bio"
         android:layout_width="wrap_content"
