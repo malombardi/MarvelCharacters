@@ -4,6 +4,7 @@ import com.malombardi.marvel.domain.repository.network.responses.MarvelCharacter
 import com.malombardi.marvel.domain.repository.network.responses.MarvelComicResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface Api {
@@ -25,7 +26,7 @@ interface Api {
 
     @GET("characters")
     suspend fun searchCharacters(
-        @Path("nameStartsWith") nameStartsWith: String,
+        @Query("nameStartsWith") nameStartsWith: String,
         @QueryMap params: Map<String, String>
     ): MarvelCharacterResponse
 }

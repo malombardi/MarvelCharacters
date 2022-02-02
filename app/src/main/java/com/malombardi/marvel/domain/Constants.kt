@@ -12,4 +12,5 @@ object Constants {
     const val PAGE_THRESHOLD = 10
     const val UNKNOWN_ID = -1
     const val COMICS_EMPTY = 0
+    const val MIN_SEARCH_TEXT_SIZE = 3
 }

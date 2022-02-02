@@ -1,9 +1,14 @@
 package com.malombardi.marvel.presentation.characters.list
 
+import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -17,6 +22,10 @@ import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import android.widget.TextView
+
+
+
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
@@ -69,6 +78,31 @@ class CharacterListFragment : Fragment() {
                     viewModel.lastItemVisible.value = layoutManager.findLastVisibleItemPosition()
                 }
             })
+
+            characterSearch.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    // do nothing
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    viewModel.searchText.value = p0.toString()
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                    // do nothing
+                }
+            })
+
+            characterSearch.setOnEditorActionListener { textView, action, keyEvent ->
+                if (action == EditorInfo.IME_ACTION_DONE) {
+                    val imm: InputMethodManager = textView.context
+                        .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(textView.windowToken, 0)
+                    true
+                }else {
+                    false
+                }
+            }
 
             characterList.adapter = adapter
         }

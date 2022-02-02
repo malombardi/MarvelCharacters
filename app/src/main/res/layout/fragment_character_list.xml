@@ -26,6 +26,7 @@
         </FrameLayout>
 
         <EditText
+            android:id="@+id/character_search"
             android:layout_width="match_parent"
             android:layout_height="@dimen/min_touchable_height"
             android:layout_margin="@dimen/small_margin"
@@ -33,7 +34,10 @@
             android:drawableEnd="@drawable/ic_search"
             android:drawablePadding="@dimen/default_margin"
             android:hint="@string/search_hint"
-            android:paddingStart="@dimen/default_margin" />
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:paddingStart="@dimen/default_margin"
+            android:paddingEnd="@dimen/default_margin"/>
 
         <View
             android:id="@+id/list_separator"
@@ -55,8 +59,8 @@
         android:id="@+id/character_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

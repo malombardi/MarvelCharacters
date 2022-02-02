@@ -24,7 +24,7 @@ interface MarvelDao {
     @Query("SELECT * FROM marvelcharacterentity ORDER BY name ASC")
     fun getCharacters(): Flow<List<MarvelCharacterEntity>>
 
-    @Query("SELECT * FROM marvelcharacterentity WHERE character_id LIKE '%' || :startsWith ORDER BY name ASC")
+    @Query("SELECT * FROM marvelcharacterentity WHERE name LIKE :startsWith || '%' ORDER BY name ASC")
     fun getCharactersWithName(startsWith: String): Flow<List<MarvelCharacterEntity>>
 
     @Query("SELECT * FROM marvelcharacterentity WHERE character_id = :characterId")
