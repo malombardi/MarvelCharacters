@@ -7,8 +7,8 @@ import com.malombardi.marvel.domain.repository.Repository
 import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -28,7 +28,7 @@ class GetCharactersUseCaseTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `getCharacter from localDataSource when success return flow`() = runBlockingTest {
+    fun `getCharacter from localDataSource when success return flow`() = runBlocking {
         //GIVEN
 
         //WHEN
