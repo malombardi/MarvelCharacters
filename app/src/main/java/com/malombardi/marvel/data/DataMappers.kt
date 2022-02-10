@@ -9,8 +9,8 @@ import com.malombardi.marvel.domain.models.MarvelComic
 import com.malombardi.marvel.data.db.entities.MarvelCharacterEntity as LocalCharacter
 import com.malombardi.marvel.data.db.entities.MarvelComicEntity as LocalComic
 import com.malombardi.marvel.data.db.entities.MarvelCreatorEntity as LocalCreator
-import com.malombardi.marvel.domain.repository.network.responses.MarvelCharacterResponse as RemoteCharacter
-import com.malombardi.marvel.domain.repository.network.responses.MarvelComicResponse as RemoteComic
+import com.malombardi.marvel.data.network.responses.MarvelCharacterResponse as RemoteCharacter
+import com.malombardi.marvel.data.network.responses.MarvelComicResponse as RemoteComic
 
 fun RemoteCharacter.toDomainCharacterList(): List<MarvelCharacter> {
     return data.results.map {

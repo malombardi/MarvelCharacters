@@ -1,10 +1,10 @@
-package com.malombardi.marvel.domain.repository.network
+package com.malombardi.marvel.data.network
 
 import com.google.gson.GsonBuilder
 import com.malombardi.marvel.domain.Constants.BASE_URL
 import com.malombardi.marvel.domain.Constants.DATE_FORMAT
-import com.malombardi.marvel.domain.repository.network.responses.MarvelCharacterResponse
-import com.malombardi.marvel.domain.repository.network.responses.MarvelComicResponse
+import com.malombardi.marvel.data.network.responses.MarvelCharacterResponse
+import com.malombardi.marvel.data.network.responses.MarvelComicResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

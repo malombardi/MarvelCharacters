@@ -1,6 +1,5 @@
 package com.malombardi.marvel.domain.usecases
 
-import com.malombardi.marvel.domain.errors.ErrorHandler
 import com.malombardi.marvel.domain.errors.IErrorHandler
 import com.malombardi.marvel.domain.models.MarvelCharacter
 import com.malombardi.marvel.domain.repository.Repository

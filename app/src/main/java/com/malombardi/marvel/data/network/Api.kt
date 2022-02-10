@@ -1,7 +1,7 @@
-package com.malombardi.marvel.domain.repository.network
+package com.malombardi.marvel.data.network
 
-import com.malombardi.marvel.domain.repository.network.responses.MarvelCharacterResponse
-import com.malombardi.marvel.domain.repository.network.responses.MarvelComicResponse
+import com.malombardi.marvel.data.network.responses.MarvelCharacterResponse
+import com.malombardi.marvel.data.network.responses.MarvelComicResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

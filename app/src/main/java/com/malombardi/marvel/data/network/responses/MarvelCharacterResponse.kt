@@ -1,4 +1,4 @@
-package com.malombardi.marvel.domain.repository.network.responses
+package com.malombardi.marvel.data.network.responses
 
 data class MarvelCharacterResponse(
     val data: CharacterData,

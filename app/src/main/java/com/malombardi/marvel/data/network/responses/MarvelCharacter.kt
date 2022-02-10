@@ -1,4 +1,4 @@
-package com.malombardi.marvel.domain.repository.network.responses
+package com.malombardi.marvel.data.network.responses
 
 import com.malombardi.marvel.domain.Constants.COMICS_EMPTY
 import com.malombardi.marvel.domain.Constants.UNKNOWN_ID

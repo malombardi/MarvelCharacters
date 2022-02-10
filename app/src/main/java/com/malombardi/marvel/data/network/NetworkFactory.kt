@@ -1,4 +1,4 @@
-package com.malombardi.marvel.domain.repository.network
+package com.malombardi.marvel.data.network
 
 import com.malombardi.marvel.BuildConfig
 import com.malombardi.marvel.domain.Constants.LIMIT_KEY
@@ -11,16 +11,24 @@ import java.security.NoSuchAlgorithmException
 class NetworkFactory {
     companion object {
         private const val ORDER_BY_KEY = "orderBy"
-        private const val ORDER_BY_TYPE = "name"
+        private const val ORDER_BY_NAME = "name"
+        private const val ORDER_BY_TITLE = "title"
         private const val TS_KEY = "ts"
         private const val API_KEY = "apikey"
         private const val HASH_KEY = "hash"
         private const val HASH_ALGO_TYPE = "MD5"
 
-        fun getNetworkOptions(offset: Int = STARTING_OFFSET): Map<String, String> {
+        fun getNetworkOptions(
+            offset: Int = STARTING_OFFSET,
+            isCharacter: Boolean
+        ): Map<String, String> {
             val ts = System.currentTimeMillis().toString()
             val options = mutableMapOf<String, String>()
-            //options[ORDER_BY_KEY] = ORDER_BY_TYPE
+            if (isCharacter) {
+                options[ORDER_BY_KEY] = ORDER_BY_NAME
+            } else {
+                options[ORDER_BY_KEY] = ORDER_BY_TITLE
+            }
             options[TS_KEY] = ts
             options[LIMIT_KEY] = PAGE_SIZE.toString()
             options[API_KEY] = BuildConfig.public_key
