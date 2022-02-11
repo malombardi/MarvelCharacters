@@ -1,6 +1,7 @@
 package com.malombardi.marvel.domain.models
 
 import com.malombardi.marvel.domain.Constants
+import java.io.Serializable
 
 data class MarvelCharacter(
     val description: String? = "",
@@ -9,4 +10,4 @@ data class MarvelCharacter(
     val thumbnail: String? = null,
     val url: String? = null,
     val comicsCount: Int? = Constants.COMICS_EMPTY
-)
+): Serializable

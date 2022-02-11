@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MarvelButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorAccent">@color/red_800</item>
+        <item name="colorButtonNormal">@color/red_800</item>
+        <item name="android:textColor">@color/red_800</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">@drawable/button_border</item>
+        <item name="android:textSize">@dimen/text_size_l</item>
+    </style>
+
+    <style name="MarvelError" parent="Widget.AppCompat.TextView">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/red_800</item>
+        <item name="fontStyle">normal</item>
+        <item name="fontWeight">800</item>
+        <item name="android:textSize">@dimen/error_text_size</item>
+    </style>
+</resources>

@@ -12,7 +12,7 @@ import com.malombardi.marvel.domain.datasources.RemoteDataSource
 import com.malombardi.marvel.domain.errors.ErrorHandler
 import com.malombardi.marvel.domain.errors.IErrorHandler
 import com.malombardi.marvel.domain.repository.Repository
-import com.malombardi.marvel.domain.repository.network.WebService
+import com.malombardi.marvel.data.network.WebService
 import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
 import com.malombardi.marvel.domain.usecases.GetComicsUseCase
 import com.malombardi.marvel.domain.usecases.SearchCharactersUseCase

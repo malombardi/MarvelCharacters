@@ -12,5 +12,4 @@ class SplashViewModel: ViewModel() {
     fun notifyAnimationFinished(){
         _animationFinished.value = true
     }
-
 }

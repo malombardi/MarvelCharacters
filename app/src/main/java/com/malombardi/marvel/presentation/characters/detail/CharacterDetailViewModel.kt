@@ -1,19 +1,18 @@
 package com.malombardi.marvel.presentation.characters.detail
 
 import com.malombardi.marvel.domain.models.MarvelCharacter
-import com.malombardi.marvel.domain.usecases.GetComicsUseCase
 import com.malombardi.marvel.presentation.MarvelViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import javax.inject.Inject
 
-@HiltViewModel
-class CharacterDetailViewModel @Inject constructor(private val getComicsUseCase: GetComicsUseCase) : MarvelViewModel() {
+class CharacterDetailViewModel : MarvelViewModel() {
 
-    lateinit var character: StateFlow<MarvelCharacter>
+    val uiState = MutableStateFlow<CharacterDetailUiState>(CharacterDetailUiState.Loading)
 
-    fun setSelectedCharacter(marvelCharacter: MarvelCharacter) {
-        character = MutableStateFlow(marvelCharacter)
+    fun setSelectedCharacter(marvelCharacter: MarvelCharacter?) {
+        if (marvelCharacter?.id == null) {
+            uiState.value = CharacterDetailUiState.Error
+        } else {
+            uiState.value = CharacterDetailUiState.Success(marvelCharacter)
+        }
     }
 }

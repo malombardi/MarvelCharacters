@@ -24,16 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import android.widget.TextView
 
-
-
-
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterListBinding
 
     val viewModel: CharacterListViewModel by viewModels()
-    val sharedViewModel: CharactersViewModel by activityViewModels()
+    private val sharedViewModel: CharactersViewModel by activityViewModels()
 
     @ExperimentalCoroutinesApi
     private lateinit var adapter: CharacterAdapter
@@ -93,7 +90,7 @@ class CharacterListFragment : Fragment() {
                 }
             })
 
-            characterSearch.setOnEditorActionListener { textView, action, keyEvent ->
+            characterSearch.setOnEditorActionListener { textView, action, _ ->
                 if (action == EditorInfo.IME_ACTION_DONE) {
                     val imm: InputMethodManager = textView.context
                         .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

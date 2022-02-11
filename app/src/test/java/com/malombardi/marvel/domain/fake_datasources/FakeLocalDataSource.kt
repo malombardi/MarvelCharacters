@@ -41,7 +41,7 @@ class FakeLocalDataSource : LocalDataSource {
 
     override fun searchCharacters(startWith: String) = flow {
         emit(
-            getFakeMarvelCharacter()
+            getFakeMarvelCharacter().reversed()
         )
     }
 

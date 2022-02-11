@@ -3,14 +3,14 @@ package com.malombardi.marvel.data
 import com.malombardi.marvel.data.Constants.IMAGE_DEFAULT_SIZE
 import com.malombardi.marvel.data.Constants.URL_BIO_TYPE
 import com.malombardi.marvel.domain.Constants
-import com.malombardi.marvel.domain.models.Creator
+import com.malombardi.marvel.domain.models.MarvelCommicCreator
 import com.malombardi.marvel.domain.models.MarvelCharacter
 import com.malombardi.marvel.domain.models.MarvelComic
 import com.malombardi.marvel.data.db.entities.MarvelCharacterEntity as LocalCharacter
 import com.malombardi.marvel.data.db.entities.MarvelComicEntity as LocalComic
 import com.malombardi.marvel.data.db.entities.MarvelCreatorEntity as LocalCreator
-import com.malombardi.marvel.domain.repository.network.responses.MarvelCharacterResponse as RemoteCharacter
-import com.malombardi.marvel.domain.repository.network.responses.MarvelComicResponse as RemoteComic
+import com.malombardi.marvel.data.network.responses.MarvelCharacterResponse as RemoteCharacter
+import com.malombardi.marvel.data.network.responses.MarvelComicResponse as RemoteComic
 
 fun RemoteCharacter.toDomainCharacterList(): List<MarvelCharacter> {
     return data.results.map {
@@ -50,10 +50,10 @@ fun RemoteComic.toDomainComicList(): List<MarvelComic> {
             ""
         }
         val creators = if (it.creators != null && !it.creators.items.isNullOrEmpty()) {
-            val creatorsList = ArrayList<Creator>()
+            val creatorsList = ArrayList<MarvelCommicCreator>()
             for (creatorItem in it.creators.items) {
                 creatorsList.add(
-                    Creator(
+                    MarvelCommicCreator(
                         resourceURI = creatorItem.resourceURI,
                         name = creatorItem.name,
                         role = creatorItem.role
@@ -62,7 +62,7 @@ fun RemoteComic.toDomainComicList(): List<MarvelComic> {
             }
             creatorsList
         } else {
-            listOf<Creator>()
+            listOf<MarvelCommicCreator>()
         }
         MarvelComic(
             creators = creators,
@@ -88,10 +88,10 @@ fun LocalCharacter.toDomainCharacter(): MarvelCharacter {
 
 fun LocalComic.toDomainComic(): MarvelComic {
     val creators = if (this.creators != null && !this.creators.isNullOrEmpty()) {
-        val creatorsList = ArrayList<Creator>()
+        val creatorsList = ArrayList<MarvelCommicCreator>()
         for (creatorItem in this.creators) {
             creatorsList.add(
-                Creator(
+                MarvelCommicCreator(
                     resourceURI = creatorItem.resourceURI,
                     name = creatorItem.name,
                     role = creatorItem.role
@@ -100,7 +100,7 @@ fun LocalComic.toDomainComic(): MarvelComic {
         }
         creatorsList
     } else {
-        listOf<Creator>()
+        listOf<MarvelCommicCreator>()
     }
     return MarvelComic(
         creators = creators,
@@ -112,15 +112,15 @@ fun LocalComic.toDomainComic(): MarvelComic {
     )
 }
 
-fun LocalCreator.toDomainCreator(): Creator {
-    return Creator(
+fun LocalCreator.toDomainCreator(): MarvelCommicCreator {
+    return MarvelCommicCreator(
         resourceURI = this.resourceURI,
         name = this.name,
         role = this.role
     )
 }
 
-fun Creator.toLocalCreator(): LocalCreator {
+fun MarvelCommicCreator.toLocalCreator(): LocalCreator {
     return LocalCreator(
         resourceURI = this.resourceURI!!,
         name = this.name,

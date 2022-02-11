@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.malombardi.marvel.data.db.Converter
 import com.malombardi.marvel.domain.Constants
-import com.malombardi.marvel.domain.models.Creator
 
 @Entity
 data class MarvelComicEntity(

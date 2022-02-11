@@ -4,4 +4,5 @@
     <string name="bio_button_name">Bio</string>
     <string name="comics_button_name">Comics</string>
     <string name="default_internal_error">An internal error occurred.</string>
+    <string name="internal_error_text">An internal error occurred.</string>
 </resources>

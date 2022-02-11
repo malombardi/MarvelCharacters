@@ -27,7 +27,7 @@ class CharacterBioDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
+        setStyle(STYLE_NORMAL, R.style.Theme_MarvelCharacters_FullScreenDialog)
         viewModel = ViewModelProvider(this)[CharactersBioViewModel::class.java]
         viewModel.setUrl(arguments?.getString(Constants.URL_BIO_TYPE))
     }

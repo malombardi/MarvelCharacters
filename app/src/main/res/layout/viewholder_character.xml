@@ -23,6 +23,7 @@
         android:layout_width="@dimen/default_image_size"
         android:textColor="@color/white"
         android:ellipsize="end"
+        android:padding="@dimen/xxsmall_margin"
         android:layout_height="@dimen/default_image_text_height"
         android:maxLines="2"
         android:background="@color/black_70"
