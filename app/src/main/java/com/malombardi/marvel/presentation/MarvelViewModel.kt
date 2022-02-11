@@ -12,7 +12,7 @@ open class MarvelViewModel @Inject constructor() : ViewModel() {
     protected fun <T> subscribeFlow(flow: Flow<T>) {
         flow.onStart {
         }.onCompletion {
-        }.flowOn(Dispatchers.Main)
+        }.flowOn(Dispatchers.IO)
             .launchIn(viewModelScope)
     }
 }

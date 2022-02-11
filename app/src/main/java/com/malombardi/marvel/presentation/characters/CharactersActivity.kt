@@ -2,11 +2,11 @@ package com.malombardi.marvel.presentation.characters
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.malombardi.marvel.R
+import com.malombardi.marvel.data.Constants
 import com.malombardi.marvel.databinding.ActivityCharactersBinding
 import com.malombardi.marvel.presentation.characters.bio.CharacterBioDialog
 import com.malombardi.marvel.presentation.characters.detail.CharacterDetailFragment
@@ -44,7 +44,12 @@ class CharactersActivity : AppCompatActivity() {
                 is CharactersActivityUiState.DetailState -> {
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(R.id.fragmentContainer, CharacterDetailFragment(state.character))
+                        .replace(R.id.fragmentContainer, CharacterDetailFragment().apply {
+                            val args = Bundle().apply {
+                                putSerializable(Constants.CHARACTER_ARGS, state.character)
+                            }
+                            arguments = args
+                        })
                         .addToBackStack(CharacterDetailFragment.NAME)
                         .commit()
                 }
@@ -58,7 +63,10 @@ class CharactersActivity : AppCompatActivity() {
                     CharacterBioDialog.newInstance(state.link, supportFragmentManager).showsDialog
                 }
                 is CharactersActivityUiState.ComicsState -> {
-                    CharacterComicsDialog.newInstance(state.characterId.toString(), supportFragmentManager).showsDialog
+                    CharacterComicsDialog.newInstance(
+                        state.characterId.toString(),
+                        supportFragmentManager
+                    ).showsDialog
                 }
             }
         }

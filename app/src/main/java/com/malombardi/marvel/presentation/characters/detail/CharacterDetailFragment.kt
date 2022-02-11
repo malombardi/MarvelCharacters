@@ -15,21 +15,15 @@ import com.malombardi.marvel.databinding.FragmentCharacterDetailBinding
 import com.malombardi.marvel.domain.models.MarvelCharacter
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow
-import com.malombardi.marvel.presentation.onClickEvents
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CharacterDetailFragment constructor(private val character: MarvelCharacter) : Fragment() {
+class CharacterDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterDetailBinding
 
     val viewModel: CharacterDetailViewModel by viewModels()
-    val sharedViewModel: CharactersViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.setSelectedCharacter(character)
-    }
+    private val sharedViewModel: CharactersViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,45 +36,60 @@ class CharacterDetailFragment constructor(private val character: MarvelCharacter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.setSelectedCharacter(arguments?.get(Constants.CHARACTER_ARGS) as MarvelCharacter?)
         with(binding) {
-            lifecycleScope.collectFlow(viewModel.character) { marvelCharacter ->
-                characterDetailName.text = marvelCharacter.name
-                characterDetailDescription.text = marvelCharacter.description
-                val characterBigImage = marvelCharacter.thumbnail?.replace(
-                    Constants.IMAGE_DEFAULT_SIZE,
-                    Constants.IMAGE_BIG_SIZE
-                )
-
-                Glide
-                    .with(requireContext())
-                    .load(characterBigImage)
-                    .placeholder(R.drawable.not_available)
-                    .error(R.drawable.not_available)
-                    .fitCenter()
-                    .into(characterDetailPic)
-
-                characterDetailComics.visibility =
-                    if (marvelCharacter.comicsCount!! > com.malombardi.marvel.domain.Constants.COMICS_EMPTY) {
-                        View.VISIBLE
-                    } else {
-                        View.GONE
+            lifecycleScope.collectFlow(viewModel.uiState) { state ->
+                when (state) {
+                    is CharacterDetailUiState.Loading -> {
+                        progress.visibility = View.VISIBLE
+                        errorLayout.errorLayout.visibility = View.GONE
                     }
-
-                characterDetailBio.visibility =
-                    if (!marvelCharacter.url.isNullOrBlank()) {
-                        View.VISIBLE
-                    } else {
-                        View.GONE
+                    is CharacterDetailUiState.Error -> {
+                        progress.visibility = View.GONE
+                        errorLayout.errorLayout.visibility = View.VISIBLE
                     }
+                    is CharacterDetailUiState.Success -> {
+                        progress.visibility = View.GONE
+                        errorLayout.errorLayout.visibility = View.GONE
+                        characterDetailName.text = state.character.name
+                        characterDetailDescription.text = state.character.description
+                        val characterBigImage = state.character.thumbnail?.replace(
+                            Constants.IMAGE_DEFAULT_SIZE,
+                            Constants.IMAGE_BIG_SIZE
+                        )
 
-                characterDetailBio.setOnClickListener {
-                    sharedViewModel.onBioSelected(character.url)
-                }
-                characterDetailComics.setOnClickListener {
-                    sharedViewModel.onComicsSelected(character.id)
+                        Glide
+                            .with(requireContext())
+                            .load(characterBigImage)
+                            .placeholder(R.drawable.not_available)
+                            .error(R.drawable.not_available)
+                            .fitCenter()
+                            .into(characterDetailPic)
+
+                        characterDetailComics.visibility =
+                            if (state.character.comicsCount!! > com.malombardi.marvel.domain.Constants.COMICS_EMPTY) {
+                                View.VISIBLE
+                            } else {
+                                View.GONE
+                            }
+
+                        characterDetailBio.visibility =
+                            if (!state.character.url.isNullOrBlank()) {
+                                View.VISIBLE
+                            } else {
+                                View.GONE
+                            }
+
+                        characterDetailBio.setOnClickListener {
+                            sharedViewModel.onBioSelected(state.character.url)
+                        }
+
+                        characterDetailComics.setOnClickListener {
+                            sharedViewModel.onComicsSelected(state.character.id)
+                        }
+                    }
                 }
             }
-
         }
     }
 

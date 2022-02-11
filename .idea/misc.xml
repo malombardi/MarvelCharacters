@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/dialog_comics.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/fragment_character_detail.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_character_list.xml" value="0.33125" />
+        <entry key="app/src/main/res/layout/internal_error_layout.xml" value="0.25181159420289856" />
         <entry key="app/src/main/res/layout/viewholder_character.xml" value="0.33125" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.26666666666666666" />

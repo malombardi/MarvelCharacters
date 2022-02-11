@@ -38,7 +38,7 @@ class CharacterComicsDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.FullScreenDialog)
+        setStyle(STYLE_NORMAL, R.style.Theme_MarvelCharacters_FullScreenDialog)
         viewModel.startFetching(arguments?.getString(Constants.CHARACTER_ID))
     }
 
