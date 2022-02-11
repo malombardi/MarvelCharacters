@@ -1,4 +1,4 @@
-package com.malombardi.marvel.presentation.comics
+package com.malombardi.marvel.presentation.characters.comics
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

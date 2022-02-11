@@ -1,4 +1,4 @@
-package com.malombardi.marvel.presentation.comics
+package com.malombardi.marvel.presentation.characters.comics
 
 import com.malombardi.marvel.domain.errors.ErrorEntity
 import com.malombardi.marvel.domain.models.MarvelComic

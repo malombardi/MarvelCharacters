@@ -1,4 +1,4 @@
-package com.malombardi.marvel.presentation.comics
+package com.malombardi.marvel.presentation.characters.comics
 
 import androidx.lifecycle.viewModelScope
 import com.malombardi.marvel.domain.Constants.CHARACTER_ID_KEY

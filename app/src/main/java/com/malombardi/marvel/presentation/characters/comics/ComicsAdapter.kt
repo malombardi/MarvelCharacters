@@ -1,17 +1,11 @@
-package com.malombardi.marvel.presentation.comics
+package com.malombardi.marvel.presentation.characters.comics
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.malombardi.marvel.databinding.ViewholderCharacterBinding
-import com.malombardi.marvel.domain.models.MarvelCharacter
 import com.malombardi.marvel.domain.models.MarvelComic
-import com.malombardi.marvel.presentation.characters.CharactersViewModel
-import com.malombardi.marvel.presentation.collectFlow
-import com.malombardi.marvel.presentation.onClickEvents
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class ComicsAdapter :
     ListAdapter<MarvelComic, ComicViewHolder>(ComicDiffCallback()) {

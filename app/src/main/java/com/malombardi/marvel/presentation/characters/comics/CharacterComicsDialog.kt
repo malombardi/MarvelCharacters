@@ -1,30 +1,23 @@
-package com.malombardi.marvel.presentation.comics
+package com.malombardi.marvel.presentation.characters.comics
 
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.malombardi.marvel.R
 import com.malombardi.marvel.data.Constants
 import com.malombardi.marvel.databinding.DialogComicsBinding
-import com.malombardi.marvel.domain.usecases.GetComicsUseCase
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
-import com.malombardi.marvel.presentation.characters.list.CharacterAdapter
 import com.malombardi.marvel.presentation.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CharacterComicsDialog : DialogFragment() {
