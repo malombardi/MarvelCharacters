@@ -1,23 +1,24 @@
 package com.malombardi.marvel.presentation.characters
 
 import app.cash.turbine.test
-import com.malombardi.marvel.domain.errors.ErrorHandler
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelCharacter
-import com.malombardi.marvel.domain.fake_datasources.FakeLocalDataSource
-import com.malombardi.marvel.domain.fake_datasources.FakeRemoteDataSource
-import com.malombardi.marvel.domain.repository.Repository
-import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
-import com.malombardi.marvel.domain.usecases.SearchCharactersUseCase
+import com.malombardi.domain.ResponseWrapper
+import com.malombardi.domain.models.MarvelCharacter
+import com.malombardi.domain.usecases.GetCharactersUseCase
+import com.malombardi.domain.usecases.SearchCharactersUseCase
 import com.malombardi.marvel.presentation.characters.list.CharacterListUiState
 import com.malombardi.marvel.presentation.characters.list.CharacterListViewModel
+import io.mockk.MockKAnnotations
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
@@ -27,23 +28,33 @@ class CharacterListViewModelTest {
     private lateinit var characterListViewModel: CharacterListViewModel
 
     private val dispatcher = TestCoroutineDispatcher()
-    private val localDataSource = FakeLocalDataSource()
-    private val remoteDataSource = FakeRemoteDataSource()
-    private val errorHandler = ErrorHandler()
 
-    @ExperimentalCoroutinesApi
-    private val coroutineDispatcher = TestCoroutineDispatcher()
-    private val repository = Repository(localDataSource, remoteDataSource)
+    @MockK
+    private lateinit var getCharactersUserCase: GetCharactersUseCase
 
-    @ExperimentalCoroutinesApi
-    private val getCharactersUserCase = GetCharactersUseCase(repository, coroutineDispatcher, errorHandler)
-    private val searchCharactersUseCase = SearchCharactersUseCase(repository, coroutineDispatcher, errorHandler)
+    @MockK
+    private lateinit var searchCharactersUseCase: SearchCharactersUseCase
 
     @ExperimentalCoroutinesApi
     @Before
     fun setup() {
+        MockKAnnotations.init(this, relaxUnitFun = true)
         Dispatchers.setMain(dispatcher)
-        characterListViewModel = CharacterListViewModel(getCharactersUserCase, searchCharactersUseCase)
+
+        every {
+            getCharactersUserCase.invoke(any())
+        } returns (flow {
+            emit(ResponseWrapper.Success(getFakeMarvelCharacter()))
+        })
+
+        every {
+            searchCharactersUseCase.invoke(any())
+        } returns (flow {
+            emit(ResponseWrapper.Success(getFakeMarvelCharacter().reversed()))
+        })
+
+        characterListViewModel =
+            CharacterListViewModel(getCharactersUserCase, searchCharactersUseCase)
     }
 
     @After
@@ -59,9 +70,8 @@ class CharacterListViewModelTest {
 
         //Then
         characterListViewModel.uiState.test {
-            assert(awaitItem() == CharacterListUiState.LoadingState(true))
-            assert(awaitItem() == CharacterListUiState.SuccessState(getFakeMarvelCharacter()))
-            cancel()
+            assertEquals(CharacterListUiState.SuccessState(getFakeMarvelCharacter()), awaitItem())
+            cancelAndIgnoreRemainingEvents()
         }
     }
 
@@ -73,8 +83,26 @@ class CharacterListViewModelTest {
         characterListViewModel.searchText.value = searchText
         //Then
         characterListViewModel.uiState.test {
-            assert(awaitItem() == CharacterListUiState.SuccessState(getFakeMarvelCharacter().reversed()))
-            cancel()
+            assertEquals(CharacterListUiState.SuccessState(getFakeMarvelCharacter().reversed()), awaitItem())
+            cancelAndIgnoreRemainingEvents()
         }
+    }
+
+    private fun getFakeMarvelCharacter(): List<MarvelCharacter> {
+        val fakeCharacterList = ArrayList<MarvelCharacter>()
+
+        for (i in 0 until 5) {
+            fakeCharacterList.add(
+                MarvelCharacter(
+                    "",
+                    i,
+                    "",
+                    "",
+                    ""
+                )
+            )
+        }
+
+        return fakeCharacterList
     }
 }

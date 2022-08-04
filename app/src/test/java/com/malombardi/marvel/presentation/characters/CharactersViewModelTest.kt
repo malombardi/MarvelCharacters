@@ -1,9 +1,9 @@
 package com.malombardi.marvel.presentation.characters
 
 import app.cash.turbine.test
-import com.malombardi.marvel.domain.errors.ErrorEntity
-import com.malombardi.marvel.domain.errors.ErrorHandler
-import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.data.ErrorHandler
+import com.malombardi.domain.errors.ErrorEntity
+import com.malombardi.domain.models.MarvelCharacter
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
