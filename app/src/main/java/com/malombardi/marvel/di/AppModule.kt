@@ -1,21 +1,20 @@
 package com.malombardi.marvel.di
 
-
 import android.content.Context
 import androidx.room.Room
-import com.malombardi.marvel.data.LocalDataSourceImpl
-import com.malombardi.marvel.data.RemoteDataSourceImpl
-import com.malombardi.marvel.data.db.MarvelCharacterDataBase
-import com.malombardi.marvel.data.db.dao.MarvelDao
-import com.malombardi.marvel.domain.datasources.LocalDataSource
-import com.malombardi.marvel.domain.datasources.RemoteDataSource
-import com.malombardi.marvel.domain.errors.ErrorHandler
-import com.malombardi.marvel.domain.errors.IErrorHandler
-import com.malombardi.marvel.domain.repository.Repository
-import com.malombardi.marvel.data.network.WebService
-import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
-import com.malombardi.marvel.domain.usecases.GetComicsUseCase
-import com.malombardi.marvel.domain.usecases.SearchCharactersUseCase
+import com.malombardi.data.ErrorHandler
+import com.malombardi.data.LocalDataSourceImpl
+import com.malombardi.data.RemoteDataSourceImpl
+import com.malombardi.data.db.MarvelCharacterDataBase
+import com.malombardi.data.db.dao.MarvelDao
+import com.malombardi.domain.datasources.LocalDataSource
+import com.malombardi.domain.datasources.RemoteDataSource
+import com.malombardi.domain.errors.IErrorHandler
+import com.malombardi.domain.repository.Repository
+import com.malombardi.data.network.WebService
+import com.malombardi.domain.usecases.GetCharactersUseCase
+import com.malombardi.domain.usecases.GetComicsUseCase
+import com.malombardi.domain.usecases.SearchCharactersUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

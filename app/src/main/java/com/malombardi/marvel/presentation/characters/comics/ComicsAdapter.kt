@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.malombardi.marvel.databinding.ViewholderCharacterBinding
-import com.malombardi.marvel.domain.models.MarvelComic
+import com.malombardi.domain.models.MarvelComic
 
 class ComicsAdapter :
     ListAdapter<MarvelComic, ComicViewHolder>(ComicDiffCallback()) {

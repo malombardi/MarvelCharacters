@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.malombardi.marvel.R
-import com.malombardi.marvel.data.Constants
+import com.malombardi.data.Constants
 import com.malombardi.marvel.databinding.DialogComicsBinding
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow

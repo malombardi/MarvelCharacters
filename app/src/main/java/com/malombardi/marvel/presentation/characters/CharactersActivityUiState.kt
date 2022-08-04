@@ -1,7 +1,7 @@
 package com.malombardi.marvel.presentation.characters
 
-import com.malombardi.marvel.domain.errors.ErrorEntity
-import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.domain.errors.ErrorEntity
+import com.malombardi.domain.models.MarvelCharacter
 
 sealed class CharactersActivityUiState {
     object ListState : CharactersActivityUiState()

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.malombardi.marvel.databinding.ViewholderCharacterBinding
-import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.domain.models.MarvelCharacter
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow
 import com.malombardi.marvel.presentation.onClickEvents

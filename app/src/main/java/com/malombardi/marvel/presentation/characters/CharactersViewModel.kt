@@ -1,17 +1,15 @@
 package com.malombardi.marvel.presentation.characters
 
-import com.malombardi.marvel.domain.Constants
-import com.malombardi.marvel.domain.errors.ErrorEntity
-import com.malombardi.marvel.domain.errors.ErrorHandler
-import com.malombardi.marvel.domain.errors.ErrorHandler.Companion.UNKNOWN_ERROR_CODE
-import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.data.ErrorHandler.Companion.UNKNOWN_ERROR_CODE
+import com.malombardi.domain.Constants
+import com.malombardi.domain.errors.ErrorEntity
+import com.malombardi.domain.models.MarvelCharacter
 import com.malombardi.marvel.presentation.MarvelViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 class CharactersViewModel : MarvelViewModel() {
 
-    private lateinit var character : MarvelCharacter
+    private lateinit var character: MarvelCharacter
     val uiState = MutableStateFlow<CharactersActivityUiState>(CharactersActivityUiState.ListState)
 
     fun onItemSelected(marvelCharacter: MarvelCharacter) {
@@ -19,11 +17,11 @@ class CharactersViewModel : MarvelViewModel() {
         uiState.value = CharactersActivityUiState.DetailState(marvelCharacter)
     }
 
-    fun onActivityReturned(){
+    fun onActivityReturned() {
         uiState.value = CharactersActivityUiState.DetailState(character)
     }
 
-    fun onReturnedWithError(){
+    fun onReturnedWithError() {
         uiState.value = CharactersActivityUiState.ErrorState(
             ErrorEntity.InternalError(UNKNOWN_ERROR_CODE)
         )
@@ -49,7 +47,7 @@ class CharactersViewModel : MarvelViewModel() {
         }
     }
 
-    fun onDetailReturn(){
+    fun onDetailReturn() {
         uiState.value = CharactersActivityUiState.ListState
     }
 }

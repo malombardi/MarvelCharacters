@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.malombardi.marvel.R
-import com.malombardi.marvel.data.Constants
+import com.malombardi.data.Constants
 import com.malombardi.marvel.databinding.DialogBioBinding
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow

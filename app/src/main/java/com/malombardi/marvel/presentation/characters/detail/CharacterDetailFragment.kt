@@ -10,9 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.malombardi.marvel.R
-import com.malombardi.marvel.data.Constants
+import com.malombardi.data.Constants
 import com.malombardi.marvel.databinding.FragmentCharacterDetailBinding
-import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.domain.models.MarvelCharacter
 import com.malombardi.marvel.presentation.characters.CharactersViewModel
 import com.malombardi.marvel.presentation.collectFlow
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,7 +67,7 @@ class CharacterDetailFragment : Fragment() {
                             .into(characterDetailPic)
 
                         characterDetailComics.visibility =
-                            if (state.character.comicsCount!! > com.malombardi.marvel.domain.Constants.COMICS_EMPTY) {
+                            if (state.character.comicsCount!! > com.malombardi.domain.Constants.COMICS_EMPTY) {
                                 View.VISIBLE
                             } else {
                                 View.GONE

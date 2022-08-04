@@ -1,13 +1,13 @@
 package com.malombardi.marvel.presentation.comics
 
 import androidx.lifecycle.viewModelScope
-import com.malombardi.marvel.domain.Constants.CHARACTER_ID_KEY
-import com.malombardi.marvel.domain.Constants.OFFSET_KEY
-import com.malombardi.marvel.domain.Constants.UNKNOWN_ID
-import com.malombardi.marvel.domain.ResponseWrapper
-import com.malombardi.marvel.domain.errors.ErrorEntity
-import com.malombardi.marvel.domain.errors.ErrorHandler.Companion.EMPTY_DATA_ERROR_CODE
-import com.malombardi.marvel.domain.usecases.GetComicsUseCase
+import com.malombardi.data.ErrorHandler.Companion.EMPTY_DATA_ERROR_CODE
+import com.malombardi.domain.Constants.CHARACTER_ID_KEY
+import com.malombardi.domain.Constants.OFFSET_KEY
+import com.malombardi.domain.Constants.UNKNOWN_ID
+import com.malombardi.domain.ResponseWrapper
+import com.malombardi.domain.errors.ErrorEntity
+import com.malombardi.domain.usecases.GetComicsUseCase
 import com.malombardi.marvel.presentation.MarvelViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

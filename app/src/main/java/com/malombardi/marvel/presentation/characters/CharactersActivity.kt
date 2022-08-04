@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.malombardi.marvel.R
-import com.malombardi.marvel.data.Constants
+import com.malombardi.data.Constants
 import com.malombardi.marvel.databinding.ActivityCharactersBinding
 import com.malombardi.marvel.presentation.characters.bio.CharacterBioDialog
 import com.malombardi.marvel.presentation.characters.detail.CharacterDetailFragment

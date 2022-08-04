@@ -11,14 +11,11 @@ android {
     defaultConfig {
         applicationId "com.malombardi.marvel"
         minSdk 23
-        targetSdk 31
-        versionCode 2
+        targetSdk 32
+        versionCode 3
         versionName "1.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField "String", "public_key", keys.public_key
-        buildConfigField "String", "private_key", keys.private_key
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -63,6 +60,10 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
     implementation 'android.arch.persistence.room:runtime:1.1.1'
+    implementation project(path: ':data')
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
+    implementation project(path: ':domain')
     kapt 'android.arch.persistence.room:compiler:1.1.1'
     
 

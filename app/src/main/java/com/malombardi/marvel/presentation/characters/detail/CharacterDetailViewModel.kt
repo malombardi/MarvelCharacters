@@ -1,6 +1,6 @@
 package com.malombardi.marvel.presentation.characters.detail
 
-import com.malombardi.marvel.domain.models.MarvelCharacter
+import com.malombardi.domain.models.MarvelCharacter
 import com.malombardi.marvel.presentation.MarvelViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 

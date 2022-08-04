@@ -1,11 +1,11 @@
 package com.malombardi.marvel.presentation.characters.list
 
 import androidx.lifecycle.viewModelScope
-import com.malombardi.marvel.domain.Constants
-import com.malombardi.marvel.domain.Constants.MIN_SEARCH_TEXT_SIZE
-import com.malombardi.marvel.domain.ResponseWrapper
-import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
-import com.malombardi.marvel.domain.usecases.SearchCharactersUseCase
+import com.malombardi.domain.Constants
+import com.malombardi.domain.Constants.MIN_SEARCH_TEXT_SIZE
+import com.malombardi.domain.ResponseWrapper
+import com.malombardi.domain.usecases.GetCharactersUseCase
+import com.malombardi.domain.usecases.SearchCharactersUseCase
 import com.malombardi.marvel.presentation.MarvelViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

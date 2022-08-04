@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.malombardi.marvel.R
 import com.malombardi.marvel.databinding.ViewholderCharacterBinding
-import com.malombardi.marvel.domain.models.MarvelComic
+import com.malombardi.domain.models.MarvelComic
 
 class ComicViewHolder(
     private val context: Context,
