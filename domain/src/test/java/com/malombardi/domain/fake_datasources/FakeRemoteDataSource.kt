@@ -1,10 +1,10 @@
-package com.malombardi.marvel.domain.fake_datasources
+package com.malombardi.domain.fake_datasources
 
-import com.malombardi.marvel.domain.datasources.RemoteDataSource
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelCharacter
-import com.malombardi.marvel.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelComic
-import com.malombardi.marvel.domain.models.MarvelCharacter
-import com.malombardi.marvel.domain.models.MarvelComic
+import com.malombardi.domain.datasources.RemoteDataSource
+import com.malombardi.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelCharacter
+import com.malombardi.domain.fake_datasources.FakeDataSource.Companion.getFakeMarvelComic
+import com.malombardi.domain.models.MarvelCharacter
+import com.malombardi.domain.models.MarvelComic
 
 class FakeRemoteDataSource : RemoteDataSource {
     override suspend fun getCharacters(offset: Int): List<MarvelCharacter> {

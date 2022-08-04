@@ -50,7 +50,6 @@ class CharactersActivity : AppCompatActivity() {
                             }
                             arguments = args
                         })
-                        .addToBackStack(CharacterDetailFragment.NAME)
                         .commit()
                 }
                 is CharactersActivityUiState.ErrorState -> {
@@ -73,8 +72,7 @@ class CharactersActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val count = supportFragmentManager.backStackEntryCount
-        if (count == 0) {
+        if (listFragment.isVisible) {
             super.onBackPressed()
         } else {
             supportFragmentManager.popBackStack()

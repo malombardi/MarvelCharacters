@@ -1,11 +1,11 @@
-package com.malombardi.marvel.domain
+package com.malombardi.domain
 
-import com.malombardi.marvel.domain.Constants.SEARCH_KEY
-import com.malombardi.marvel.domain.errors.ErrorHandler
-import com.malombardi.marvel.domain.fake_datasources.FakeLocalDataSource
-import com.malombardi.marvel.domain.fake_datasources.FakeRemoteDataSource
-import com.malombardi.marvel.domain.repository.Repository
-import com.malombardi.marvel.domain.usecases.SearchCharactersUseCase
+import com.malombardi.domain.Constants.SEARCH_KEY
+import com.malombardi.domain.fake_datasources.FakeErrorHandler
+import com.malombardi.domain.fake_datasources.FakeLocalDataSource
+import com.malombardi.domain.fake_datasources.FakeRemoteDataSource
+import com.malombardi.domain.repository.Repository
+import com.malombardi.domain.usecases.SearchCharactersUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -18,7 +18,7 @@ class SearchCharactersUseCaseTest {
 
     private val localDataSource = FakeLocalDataSource()
     private val remoteDataSource = FakeRemoteDataSource()
-    private val errorHandler = ErrorHandler()
+    private val errorHandler = FakeErrorHandler()
 
     @ExperimentalCoroutinesApi
     private val coroutineDispatcher = TestCoroutineDispatcher()
@@ -45,14 +45,15 @@ class SearchCharactersUseCaseTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun `searchCharacter from localDataSource when no textToSearch return error`() = runBlockingTest {
-        //GIVEN
+    fun `searchCharacter from localDataSource when no textToSearch return error`() =
+        runBlockingTest {
+            //GIVEN
 
-        //WHEN
-        val options = HashMap<String,String>()
-        val listResults = searchCharactersUseCase.invoke(options).toList()[0]
+            //WHEN
+            val options = HashMap<String, String>()
+            val listResults = searchCharactersUseCase.invoke(options).toList()[0]
 
-        //THEN
-        assert(listResults is ResponseWrapper.Error)
-    }
+            //THEN
+            assert(listResults is ResponseWrapper.Error)
+        }
 }

@@ -1,10 +1,10 @@
-package com.malombardi.marvel.domain
+package com.malombardi.domain
 
-import com.malombardi.marvel.domain.errors.ErrorHandler
-import com.malombardi.marvel.domain.fake_datasources.FakeLocalDataSource
-import com.malombardi.marvel.domain.fake_datasources.FakeRemoteDataSource
-import com.malombardi.marvel.domain.repository.Repository
-import com.malombardi.marvel.domain.usecases.GetCharactersUseCase
+import com.malombardi.domain.fake_datasources.FakeErrorHandler
+import com.malombardi.domain.fake_datasources.FakeLocalDataSource
+import com.malombardi.domain.fake_datasources.FakeRemoteDataSource
+import com.malombardi.domain.repository.Repository
+import com.malombardi.domain.usecases.GetCharactersUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -16,7 +16,7 @@ class GetCharactersUseCaseTest {
 
     private val localDataSource = FakeLocalDataSource()
     private val remoteDataSource = FakeRemoteDataSource()
-    private val errorHandler = ErrorHandler()
+    private val errorHandler = FakeErrorHandler()
 
     @ExperimentalCoroutinesApi
     private val coroutineDispatcher = TestCoroutineDispatcher()

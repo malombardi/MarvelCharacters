@@ -92,8 +92,4 @@ class CharacterDetailFragment : Fragment() {
             }
         }
     }
-
-    companion object {
-        const val NAME = "CharacterDetailFragment"
-    }
 }
