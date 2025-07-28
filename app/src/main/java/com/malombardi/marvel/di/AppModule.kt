@@ -7,14 +7,15 @@ import com.malombardi.data.LocalDataSourceImpl
 import com.malombardi.data.RemoteDataSourceImpl
 import com.malombardi.data.db.MarvelCharacterDataBase
 import com.malombardi.data.db.dao.MarvelDao
+import com.malombardi.data.network.WebService
 import com.malombardi.domain.datasources.LocalDataSource
 import com.malombardi.domain.datasources.RemoteDataSource
 import com.malombardi.domain.errors.IErrorHandler
 import com.malombardi.domain.repository.Repository
-import com.malombardi.data.network.WebService
 import com.malombardi.domain.usecases.GetCharactersUseCase
 import com.malombardi.domain.usecases.GetComicsUseCase
 import com.malombardi.domain.usecases.SearchCharactersUseCase
+import com.malombardi.domain.usecases.updateCharacaterFavUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,9 +32,10 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMarvelCharacterDataBase(@ApplicationContext app: Context) : MarvelCharacterDataBase {
+    fun provideMarvelCharacterDataBase(@ApplicationContext app: Context): MarvelCharacterDataBase {
         return Room
-            .databaseBuilder(app, MarvelCharacterDataBase::class.java,
+            .databaseBuilder(
+                app, MarvelCharacterDataBase::class.java,
                 MarvelCharacterDataBase.DB_NAME
             )
             .build()
@@ -41,7 +43,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMarvelDao(db: MarvelCharacterDataBase) : MarvelDao {
+    fun provideMarvelDao(db: MarvelCharacterDataBase): MarvelDao {
         return db.marvelDao()
     }
 
@@ -71,29 +73,47 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(localDataSource: LocalDataSourceImpl, remoteDataSource: RemoteDataSourceImpl): Repository{
+    fun provideRepository(
+        localDataSource: LocalDataSourceImpl,
+        remoteDataSource: RemoteDataSourceImpl
+    ): Repository {
         return Repository(localDataSource, remoteDataSource)
     }
 
     @Provides
-    fun provideCharacterUseCase(repository: Repository,
-                                @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
-                                errorHandler: IErrorHandler): GetCharactersUseCase {
+    fun provideCharacterUseCase(
+        repository: Repository,
+        @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
+        errorHandler: IErrorHandler
+    ): GetCharactersUseCase {
         return GetCharactersUseCase(repository, coroutineDispatcher, errorHandler)
     }
 
     @Provides
-    fun provideComicsUseCase(repository: Repository,
-                                @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
-                                errorHandler: IErrorHandler): GetComicsUseCase {
+    fun provideComicsUseCase(
+        repository: Repository,
+        @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
+        errorHandler: IErrorHandler
+    ): GetComicsUseCase {
         return GetComicsUseCase(repository, coroutineDispatcher, errorHandler)
     }
 
     @Provides
-    fun provideSearchCharacterUseCase(repository: Repository,
-                             @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
-                             errorHandler: IErrorHandler): SearchCharactersUseCase {
+    fun provideSearchCharacterUseCase(
+        repository: Repository,
+        @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
+        errorHandler: IErrorHandler
+    ): SearchCharactersUseCase {
         return SearchCharactersUseCase(repository, coroutineDispatcher, errorHandler)
+    }
+
+    @Provides
+    fun provideUpdateCharacaterFavUseCase(
+        repository: Repository,
+        @IoDispatcher coroutineDispatcher: CoroutineDispatcher,
+        errorHandler: IErrorHandler
+    ): updateCharacaterFavUseCase {
+        return updateCharacaterFavUseCase(coroutineDispatcher, repository, errorHandler)
     }
 
     @DefaultDispatcher

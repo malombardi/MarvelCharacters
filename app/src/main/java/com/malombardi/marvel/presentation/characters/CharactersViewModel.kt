@@ -6,9 +6,13 @@ import com.malombardi.domain.errors.ErrorEntity
 import com.malombardi.domain.models.MarvelCharacter
 import com.malombardi.domain.usecases.updateCharacaterFavUseCase
 import com.malombardi.marvel.presentation.MarvelViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
-class CharactersViewModel constructor(private val updateUseCase: updateCharacaterFavUseCase) : MarvelViewModel() {
+@HiltViewModel
+class CharactersViewModel @Inject constructor(private val updateUseCase: updateCharacaterFavUseCase) :
+    MarvelViewModel() {
 
     private lateinit var character: MarvelCharacter
     val uiState = MutableStateFlow<CharactersActivityUiState>(CharactersActivityUiState.ListState)
@@ -48,7 +52,7 @@ class CharactersViewModel constructor(private val updateUseCase: updateCharacate
         }
     }
 
-    fun onFavChanged(isFav: Boolean){
+    fun onFavChanged(isFav: Boolean) {
         character.isFav = isFav
         subscribeFlow(
             updateUseCase.invoke(character)
