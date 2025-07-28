@@ -87,6 +87,11 @@ class CharacterDetailFragment : Fragment() {
                         characterDetailComics.setOnClickListener {
                             sharedViewModel.onComicsSelected(state.character.id)
                         }
+
+                        characterDetailFavs.isSelected = state.character.isFav
+                        characterDetailFavs.setOnClickListener{
+                            sharedViewModel.onFavChanged(it.isSelected)
+                        }
                     }
                 }
             }

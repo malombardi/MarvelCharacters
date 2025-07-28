@@ -9,10 +9,11 @@ import com.malombardi.domain.Constants
 data class MarvelCharacterEntity (
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "character_id")
-    val id: Int? = Constants.UNKNOWN_ID,
-    val name: String? = "",
-    val description: String? = "",
-    val thumbnail: String? = "",
-    @ColumnInfo(name = "bio_link")val bioLink: String? = "",
-    @ColumnInfo(name = "comics_count")val comicsCount: Int? = Constants.COMICS_EMPTY
+    var id: Int? = Constants.UNKNOWN_ID,
+    var name: String? = "",
+    var description: String? = "",
+    var thumbnail: String? = "",
+    @ColumnInfo(name = "bio_link")var bioLink: String? = "",
+    @ColumnInfo(name = "comics_count")var comicsCount: Int? = Constants.COMICS_EMPTY,
+    @ColumnInfo(name = "is_fav")var isFav: Boolean = false
 )

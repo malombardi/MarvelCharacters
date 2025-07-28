@@ -62,6 +62,7 @@ class CharacterListFragment : Fragment() {
                     }
                     is CharacterListUiState.ErrorState -> {
                         characterProgress.visibility = View.GONE
+//TODO show error apikey not working
                     }
                 }
             }

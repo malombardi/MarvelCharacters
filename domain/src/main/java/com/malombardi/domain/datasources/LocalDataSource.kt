@@ -22,4 +22,6 @@ interface LocalDataSource {
     fun searchCharacters(startWith: String): Flow<List<MarvelCharacter>>
 
     fun getComics(characterId: String): Flow<List<MarvelComic>>
+
+    suspend fun updateFavForCharacter(character: MarvelCharacter)
 }

@@ -82,7 +82,8 @@ fun LocalCharacter.toDomainCharacter(): MarvelCharacter {
         name = this.name,
         thumbnail = this.thumbnail,
         url = this.bioLink,
-        comicsCount = this.comicsCount
+        comicsCount = this.comicsCount,
+        isFav = this.isFav
     )
 }
 
@@ -135,7 +136,8 @@ fun MarvelCharacter.toLocalCharacter(): LocalCharacter {
         description = this.description,
         thumbnail = this.thumbnail,
         bioLink = this.url,
-        comicsCount = this.comicsCount
+        comicsCount = this.comicsCount,
+        isFav = this.isFav
     )
 }
 
@@ -147,7 +149,8 @@ fun List<MarvelCharacter>.toLocalCharacterList(): List<LocalCharacter> {
             description = it.description,
             thumbnail = it.thumbnail,
             bioLink = it.url,
-            comicsCount = it.comicsCount
+            comicsCount = it.comicsCount,
+            isFav = it.isFav
         )
     }
 }

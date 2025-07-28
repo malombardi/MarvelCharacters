@@ -3,6 +3,7 @@
     <string name="search_hint">Enter character name</string>
     <string name="bio_button_name">Bio</string>
     <string name="comics_button_name">Comics</string>
+    <string name="fav_button_name">FAV</string>
     <string name="default_internal_error">An internal error occurred.</string>
     <string name="internal_error_text">An internal error occurred.</string>
 </resources>

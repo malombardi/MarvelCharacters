@@ -13,7 +13,7 @@ abstract class FlowUseCase<in P, out R>(
     private val errorHandler: IErrorHandler
 ) {
 
-    operator fun invoke(parameters: P): Flow<ResponseWrapper<R>> {
+    fun invoke(parameters: P): Flow<ResponseWrapper<R>> {
         return flow {
             try {
                 execute(parameters).collect {

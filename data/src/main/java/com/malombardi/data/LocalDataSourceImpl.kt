@@ -66,4 +66,8 @@ class LocalDataSourceImpl @Inject constructor(private val dao: MarvelDao) : Loca
         val comicsList = dao.getComicsForCharacter(characterId)[0].comics!!.toDomainComicList()
         emit(comicsList)
     }
+
+    override suspend fun updateFavForCharacter(character: MarvelCharacter) {
+        dao.updateCharacter(character.toLocalCharacter())
+    }
 }

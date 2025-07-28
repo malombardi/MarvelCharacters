@@ -34,6 +34,7 @@ class NetworkFactory {
             options[API_KEY] = BuildConfig.public_key
             options[HASH_KEY] = generateHash(ts + BuildConfig.private_key + BuildConfig.public_key)
             options[OFFSET_KEY] = offset.toString()
+            options["orderBy"] = "-name"
 
             return options
         }

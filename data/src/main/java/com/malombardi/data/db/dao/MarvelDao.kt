@@ -7,6 +7,7 @@ import com.malombardi.data.db.relations.CharacterComicCrossRef
 import com.malombardi.data.db.relations.CharacterWithComics
 import com.malombardi.data.db.relations.ComicCreatorCrossRef
 import com.malombardi.data.db.relations.ComicWithCreators
+import com.malombardi.domain.models.MarvelCharacter
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,7 +22,7 @@ interface MarvelDao {
     @Query("SELECT COUNT(character_id) FROM marvelcharacterentity WHERE character_id = :characterId")
     suspend fun comicsCount(characterId: String): Int
 
-    @Query("SELECT * FROM marvelcharacterentity ORDER BY name ASC")
+    @Query("SELECT * FROM marvelcharacterentity ORDER BY is_fav, name ASC")
     fun getCharacters(): Flow<List<MarvelCharacterEntity>>
 
     @Query("SELECT * FROM marvelcharacterentity WHERE name LIKE :startsWith || '%' ORDER BY name ASC")
@@ -44,4 +45,7 @@ interface MarvelDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun saveComicCreator(join: ComicCreatorCrossRef)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateCharacter(character: MarvelCharacterEntity)
 }

@@ -9,5 +9,6 @@ data class MarvelCharacter(
     val name: String? = "",
     val thumbnail: String? = null,
     val url: String? = null,
-    val comicsCount: Int? = Constants.COMICS_EMPTY
+    val comicsCount: Int? = Constants.COMICS_EMPTY,
+    var isFav : Boolean = false
 ): Serializable

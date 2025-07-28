@@ -9,7 +9,7 @@ import com.malombardi.domain.Constants
 data class MarvelCreatorEntity (
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "creator_id")
-    val resourceURI: String,
-    val name: String?,
-    val role: String?
+    var resourceURI: String,
+    var name: String?,
+    var role: String?
 )

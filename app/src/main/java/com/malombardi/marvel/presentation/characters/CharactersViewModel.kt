@@ -4,10 +4,11 @@ import com.malombardi.data.ErrorHandler.Companion.UNKNOWN_ERROR_CODE
 import com.malombardi.domain.Constants
 import com.malombardi.domain.errors.ErrorEntity
 import com.malombardi.domain.models.MarvelCharacter
+import com.malombardi.domain.usecases.updateCharacaterFavUseCase
 import com.malombardi.marvel.presentation.MarvelViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class CharactersViewModel : MarvelViewModel() {
+class CharactersViewModel constructor(private val updateUseCase: updateCharacaterFavUseCase) : MarvelViewModel() {
 
     private lateinit var character: MarvelCharacter
     val uiState = MutableStateFlow<CharactersActivityUiState>(CharactersActivityUiState.ListState)
@@ -45,6 +46,13 @@ class CharactersViewModel : MarvelViewModel() {
         } else {
             uiState.value = CharactersActivityUiState.ComicsState(id)
         }
+    }
+
+    fun onFavChanged(isFav: Boolean){
+        character.isFav = isFav
+        subscribeFlow(
+            updateUseCase.invoke(character)
+        )
     }
 
     fun onDetailReturn() {

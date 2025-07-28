@@ -53,4 +53,8 @@ class Repository @Inject constructor(
             localDataSource.saveComics(characterId, newComics)
         }
     }
+
+    suspend fun updateFavChararater(charater: MarvelCharacter){
+        localDataSource.updateFavForCharacter(charater)
+    }
 }
